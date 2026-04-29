@@ -4,6 +4,7 @@
    ============================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -820,5 +821,322 @@ footer {
   .contact-photo {
     width: 100%;
     height: 260px;
+  }
+}
+
+/* ─── Minimal technical refresh ───────────────────────── */
+
+body {
+  background-color: #f7f7f5;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.075) 1px, transparent 1px);
+  background-size: 22px 22px;
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  color: #050505;
+}
+
+nav {
+  position: static;
+  background: transparent;
+  border-bottom: 1px solid #deded8;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+nav.scrolled {
+  border-bottom-color: #deded8;
+}
+
+.nav-inner,
+.hero-inner,
+.section-inner,
+.page-header-inner,
+.footer-inner,
+.divider {
+  max-width: 1060px;
+}
+
+.nav-inner {
+  padding: 1.45rem 2rem;
+  align-items: center;
+}
+
+.nav-brand {
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.nav-links {
+  gap: 2rem;
+}
+
+.nav-links a,
+.section-label,
+.achieve-tag,
+.sport-highlight,
+.contact-label,
+.footer-left,
+.project-kicker {
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.nav-links a {
+  padding: 0;
+  border-radius: 0;
+  color: #8f8f8b;
+  font-size: 0.72rem;
+  font-weight: 500;
+  transition: color 0.18s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background: transparent;
+  color: #050505;
+  transform: none;
+}
+
+header {
+  padding: 96px 0 58px;
+}
+
+.hero-inner {
+  align-items: flex-start;
+  gap: 4rem;
+}
+
+.hero-name {
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(3.3rem, 9vw, 7.25rem);
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 0.88;
+  color: #050505;
+  margin-bottom: 1.35rem;
+}
+
+.hero-philosophy,
+.page-subtitle,
+.coming-soon-large,
+.coming-soon-sub {
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-style: normal;
+}
+
+.hero-philosophy {
+  max-width: 36rem;
+  font-size: 0.92rem;
+  color: #777775;
+}
+
+.hero-image-wrap {
+  width: 210px;
+  padding: 0;
+  border: 1px solid #d9d9d3;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transition: none;
+}
+
+.hero-image-wrap:hover {
+  transform: none;
+  border-color: #d9d9d3;
+  box-shadow: none;
+}
+
+.hero-portrait {
+  height: 292px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.divider,
+.full-divider {
+  background: #deded8;
+}
+
+section {
+  padding: 52px 0;
+}
+
+.section-inner {
+  border-radius: 0;
+  transition: none;
+}
+
+section:hover .section-inner {
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+
+.section-label {
+  min-width: 130px;
+  color: #999995;
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.body-text,
+.edu-detail,
+.achieve-desc,
+.sport-achievement,
+.contact-link,
+.work-card p,
+.fun-project-list {
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+}
+
+.body-text {
+  max-width: 650px;
+  font-size: 0.96rem;
+  line-height: 1.85;
+  color: #262626;
+}
+
+.inline-age,
+.edu-school,
+.achieve-title,
+.sport-name,
+.work-card h2,
+.fun-project-list strong,
+.page-title {
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+}
+
+.wiki-hover {
+  color: #111;
+  border-bottom-color: #b8b8b2;
+}
+
+.wiki-hover:hover {
+  background: transparent;
+  border-color: #050505;
+}
+
+.wiki-hover::after,
+.hover-card {
+  box-shadow: none;
+}
+
+.achieve-block,
+.sport-block,
+.contact-row,
+.fun-project-list li {
+  transition: none;
+}
+
+.achieve-block:hover,
+.sport-block:hover,
+.contact-row:hover,
+.fun-project-list li:hover {
+  background: transparent;
+  transform: none;
+}
+
+.edu-tag,
+.scholarship-badge {
+  border-color: #d9d9d3;
+  border-radius: 0;
+  background: transparent;
+  color: #777775;
+}
+
+.page-header {
+  padding: 88px 0 46px;
+}
+
+.page-title {
+  font-size: clamp(2.6rem, 7vw, 5.7rem);
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.contact-photo {
+  border-radius: 0;
+  box-shadow: none;
+  border: 1px solid #d9d9d3;
+}
+
+.project-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.large-works-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.work-card {
+  max-width: 360px;
+  transition: none;
+}
+
+.work-card:hover {
+  transform: none;
+}
+
+.work-image {
+  border: 1px solid #d6d6d1;
+  border-radius: 0;
+  box-shadow: none;
+  transition: none;
+}
+
+.work-card:hover .work-image {
+  border-color: #050505;
+  filter: none;
+  box-shadow: none;
+}
+
+.work-card h2 {
+  margin-top: 0.95rem;
+  margin-bottom: 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.work-card p {
+  max-width: 320px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #777775;
+}
+
+.footer-icon:hover {
+  color: #050505;
+}
+
+@media (max-width: 680px) {
+  .nav-inner {
+    padding: 1rem;
+  }
+
+  header {
+    padding: 62px 0 42px;
+  }
+
+  .hero-name {
+    font-size: clamp(2.75rem, 14vw, 4.2rem);
+  }
+
+  .hero-image-wrap {
+    width: min(210px, 62vw);
+  }
+
+  .hero-portrait {
+    height: 292px;
+  }
+
+  .work-card {
+    max-width: none;
   }
 }
