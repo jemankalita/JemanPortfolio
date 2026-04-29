@@ -1,54 +1,46 @@
-# Jeman Kalita — Personal Site
+# Jeman Kalita - Personal Site
 
-A minimal, serif-first personal website.
+A serif-first personal website with a portfolio photo, projects page, hover references, and contact links.
 
 ## Folder structure
 
-```
+```text
 jeman-kalita-site/
 ├── index.html       ← all pages live here
 ├── style.css        ← all styles
 ├── script.js        ← page routing + nav
-├── assets/          ← put your photo here
+├── portfolio.png    ← portrait image
+├── favicon.svg      ← site icon
 └── README.md
 ```
 
-## How to add your photo
+## How to update your photo
 
-1. Copy your portrait image into the /assets/ folder.
-   Name it something simple like: jeman.jpg
-
-2. Open index.html and find this block (around line 55):
-
-      <div class="portrait-placeholder"> ... </div>
-      <!-- <img src="assets/jeman.jpg" ...> -->
-
-3. Delete the portrait-placeholder div entirely.
-
-4. Uncomment the img tag and update the filename to match yours:
-
-      <img src="assets/jeman.jpg" class="hero-portrait" alt="Jeman Kalita">
-
-5. Save and refresh in your browser.
+Replace `portfolio.png` with a new image using the same filename, then refresh the site.
 
 ## How to update your links
 
-Search index.html for these placeholders and swap them:
+Search `index.html` for these values and update them:
 
-  jemankalita@gmail.com   →  your real email
-  github.com/jeman        →  your GitHub URL
-  linkedin.com/in/jeman   →  your LinkedIn URL
-  @jeman                  →  your X/Twitter handle
+```text
+jemankalita@gmail.com
+github.com/jemankalita
+linkedin.com/in/jemankalita
+@xerotwts
+```
 
 ## How to run locally
 
-Open index.html directly in any browser — no build step needed.
+Open `index.html` directly in any browser. No build step is needed.
 
-Or use Python to serve it:
-  python3 -m http.server 8000
-Then visit: http://localhost:8000
+Or serve it locally:
+
+```bash
+python -m http.server 8000
+```
+
+Then visit `http://localhost:8000`.
 
 ## Fonts
 
-  Playfair Display  — headings, name, page titles (loaded from Google Fonts)
-  Georgia / serif   — all body text, labels, nav links (system font, no load needed)
+Playfair Display is loaded from Google Fonts for headings, names, and page titles. Georgia is used for body text, labels, and navigation.

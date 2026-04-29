@@ -275,6 +275,90 @@ section:hover .section-inner {
   vertical-align: baseline;
 }
 
+.wiki-hover {
+  position: relative;
+  color: #7a4d23;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(122, 77, 35, 0.28);
+  padding-bottom: 0.02rem;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.wiki-hover:hover {
+  color: #111;
+  border-color: #111;
+  background: rgba(185, 130, 70, 0.14);
+}
+
+.wiki-hover::after {
+  content: "Wikipedia";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.45rem);
+  transform: translateX(-50%) translateY(4px);
+  opacity: 0;
+  pointer-events: none;
+  font-family: Georgia, serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5f4630;
+  background: #fffaf2;
+  border: 1px solid rgba(122, 77, 35, 0.22);
+  border-radius: 999px;
+  padding: 0.22rem 0.52rem;
+  box-shadow: 0 10px 26px rgba(73, 47, 22, 0.1);
+  white-space: nowrap;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 5;
+}
+
+.wiki-hover:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.hover-card {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 2.25rem);
+  width: 150px;
+  padding: 0.5rem;
+  transform: translateX(-50%) translateY(8px);
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(255, 250, 242, 0.98);
+  border: 1px solid rgba(122, 77, 35, 0.24);
+  border-radius: 8px;
+  box-shadow: 0 18px 36px rgba(73, 47, 22, 0.16);
+  z-index: 6;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.wiki-thiel:hover .hover-card {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.hover-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1.04;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.45rem;
+}
+
+.hover-card span {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  color: #5f4630;
+}
+
 /* ─── EDUCATION ───────────────────────────── */
 
 .edu-school {
