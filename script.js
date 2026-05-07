@@ -198,3 +198,31 @@ if (heroWrap) {
 
   observeSections();
 })();
+
+// ─── Smart info-card flip (above ↔ below) ───
+(function initInfoCardFlip() {
+  const CARD_ESTIMATED_HEIGHT = 160; // px — enough buffer for most cards
+  const MARGIN = 12; // gap between token and card
+
+  function positionCard(token) {
+    const card = token.querySelector('.info-card');
+    if (!card) return;
+
+    const rect = token.getBoundingClientRect();
+    const spaceAbove = rect.top;
+    const spaceBelow = window.innerHeight - rect.bottom;
+
+    const cardHeight = card.offsetHeight || CARD_ESTIMATED_HEIGHT;
+
+    if (spaceAbove < cardHeight + MARGIN && spaceBelow > spaceAbove) {
+      token.classList.add('card-flip');
+    } else {
+      token.classList.remove('card-flip');
+    }
+  }
+
+  document.querySelectorAll('.info-token').forEach(token => {
+    token.addEventListener('mouseenter', () => positionCard(token));
+    token.addEventListener('focusin',    () => positionCard(token));
+  });
+})();

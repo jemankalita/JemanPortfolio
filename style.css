@@ -2385,3 +2385,17 @@ a:focus-visible, button:focus-visible {
   width: 20px;
   height: 20px;
 }
+
+/* ─── Info card flip: show below when space is tight above ─── */
+.info-token.card-flip .info-card,
+.info-token.card-flip.info-token-thiel .info-card {
+  bottom: auto;
+  top: calc(100% + 0.75rem);
+  transform: translateX(-50%) translateY(-8px) scale(0.98);
+}
+
+.info-token.card-flip:hover .info-card,
+.info-token.card-flip:focus-visible .info-card {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
