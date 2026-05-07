@@ -21,6 +21,10 @@
       <a onclick="showPage('interests')"    data-page="interests">Interests</a>
       <a onclick="showPage('contact')"      data-page="contact">Contact</a>
     </div>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+      <span class="theme-icon theme-sun">☀</span>
+      <span class="theme-icon theme-moon">☾</span>
+    </button>
   </div>
 </nav>
 
@@ -49,10 +53,10 @@
       <span class="section-label">Overview</span>
       <div class="section-content">
         <p class="body-text">
-          <span class="inline-age">18.</span> Learnt by hacking around on the internet. My love for tech started when I was 10, building <a class="wiki-hover" href="https://en.wikipedia.org/wiki/Arduino" target="_blank" rel="noopener">Arduino</a> rovers and <a class="wiki-hover" href="https://en.wikipedia.org/wiki/First-person_view_(radio_control)" target="_blank" rel="noopener">FPV drones</a>, and somewhere along the way it pivoted into abusing <a class="wiki-hover" href="https://en.wikipedia.org/wiki/Claude_(language_model)" target="_blank" rel="noopener">Claude Code</a> and <a class="wiki-hover" href="https://en.wikipedia.org/wiki/OpenAI_Codex" target="_blank" rel="noopener">Codex</a>.
+          <span class="inline-age">18.</span> Learnt by hacking around on the internet. My love for tech started when I was 10, building <span class="info-token" tabindex="0">Arduino<span class="info-card"><strong>Arduino</strong><span>An open-source electronics platform used to prototype hardware with simple boards, sensors, and code.</span></span></span> rovers and <span class="info-token" tabindex="0">FPV drones<span class="info-card"><strong>FPV drones</strong><span>First-person-view drones flown through a live camera feed, blending electronics, radio systems, and fast control.</span></span></span>, and somewhere along the way it pivoted into abusing <span class="info-token" tabindex="0">Claude Code<span class="info-card"><strong>Claude Code</strong><span>Anthropic's agentic coding tool for working with codebases through natural-language prompts and terminal workflows.</span></span></span> and <span class="info-token" tabindex="0">Codex<span class="info-card"><strong>Codex</strong><span>OpenAI's coding-focused model family and developer tooling for reading, writing, and improving software.</span></span></span>.
         </p>
         <p class="body-text">
-          But honestly, I love finance more than tech. I am deeply interested in how hedge funds work, <a class="wiki-hover" href="https://en.wikipedia.org/wiki/Quantitative_analysis_(finance)" target="_blank" rel="noopener">quantitative trading</a>, and the math behind markets. I really admire <a class="wiki-hover wiki-thiel" href="https://en.wikipedia.org/wiki/Peter_Thiel" target="_blank" rel="noopener">Peter Thiel<span class="hover-card thiel-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Peter_Thiel.jpg/250px-Peter_Thiel.jpg" alt="Peter Thiel"><span>Peter Thiel</span></span></a> and his ideologies around contrarian thinking, monopoly, and building things that matter. I also love <a class="wiki-hover" href="https://en.wikipedia.org/wiki/Formula_One" target="_blank" rel="noopener">F1</a> and <a class="wiki-hover" href="https://en.wikipedia.org/wiki/Association_football" target="_blank" rel="noopener">football</a>. I started investing the day I turned 18, and since then I have been obsessed with understanding how money actually moves. I am especially drawn to the intersection of code and capital &mdash; using technology to find edges, test ideas, and think in systems rather than guesses.
+          But honestly, I love finance more than tech. I am deeply interested in how hedge funds work, <span class="info-token" tabindex="0">quantitative trading<span class="info-card"><strong>Quantitative trading</strong><span>A systematic approach to markets that uses math, statistics, code, and data to test and execute strategies.</span></span></span>, and the math behind markets. I really admire <span class="info-token info-token-thiel" tabindex="0">Peter Thiel<span class="info-card info-card-person"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Peter_Thiel.jpg/250px-Peter_Thiel.jpg" alt="Peter Thiel"><strong>Peter Thiel</strong><span>PayPal co-founder, investor, entrepreneur, and author known for contrarian thinking, monopoly theory, and backing category-defining companies.</span></span></span> and his ideologies around contrarian thinking, monopoly, and building things that matter. I also love <span class="info-token" tabindex="0">F1<span class="info-card"><strong>Formula One</strong><span>The top class of international single-seater racing, built around speed, engineering, strategy, and elite execution.</span></span></span> and <span class="info-token" tabindex="0">football<span class="info-card"><strong>Football</strong><span>The world's most-played team sport, centered on space, tactics, athleticism, and collective decision-making.</span></span></span>. I started investing the day I turned 18, and since then I have been obsessed with understanding how money actually moves. I am especially drawn to the intersection of code and capital &mdash; using technology to find edges, test ideas, and think in systems rather than guesses.
         </p>
         <p class="body-text">
           Right now, I am learning about AI safety, ML, and competitive programming.
@@ -207,23 +211,23 @@
   <section>
     <div class="section-inner">
       <span class="section-label">Projects</span>
-      <div class="section-content project-grid large-works-grid">
-        <a class="work-card" href="https://jeepredict.vercel.app/" target="_blank" rel="noopener">
-          <img src="JEEPREDICT.jpg" class="work-image" alt="JEE Predict website preview">
-          <h2>JEE Predict</h2>
-          <p>A JEE Mains prediction betting website.</p>
-        </a>
+      <div class="section-content">
+        <div class="coming-projects" aria-label="Projects coming soon">
+          <span class="coming-orbit"></span>
+          <p class="coming-title">Coming Soon</p>
+          <p class="coming-copy">New builds are being shaped quietly. The best ones will land here.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <section>
+  <section hidden>
     <div class="section-inner">
-      <span class="section-label">Fun Projects</span>
+      <span class="section-label">More</span>
       <div class="section-content">
-        <ul class="fun-project-list">
+        <ul class="fun-project-list" hidden>
           <li><strong>Arduino rovers</strong> — early experiments with sensors, motors, and small autonomous builds.</li>
           <li><strong>FPV experiments</strong> — tinkering with flight systems, cameras, and making machines move.</li>
         </ul>
@@ -342,7 +346,6 @@
     <div class="section-inner">
       <span class="section-label">Reach out</span>
       <div class="section-content contact-shell">
-        <img src="portfolio.png" class="contact-photo" alt="Jeman Kalita">
         <div class="contact-list">
           <div class="contact-row">
             <span class="contact-label">Email</span>
