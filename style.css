@@ -2741,3 +2741,15 @@ a:focus-visible, button:focus-visible {
   opacity: 0.55;
   margin-left: 0.4em;
 }
+
+/* ─── Systems Background Canvas ─────────────────── */
+#systems-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none; /* Let clicks pass through */
+  opacity: 0.6; /* Subtle */
+}
