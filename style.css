@@ -824,6 +824,86 @@ footer {
   }
 }
 
+/* ─── Final nav + spacing patch ────────────────────────── */
+
+nav {
+  border-top: 2px solid #111;
+  border-bottom: 2px solid #111;
+  box-shadow: none;
+}
+
+.nav-inner {
+  min-height: 112px;
+}
+
+.nav-links {
+  justify-content: space-between;
+  gap: clamp(1.4rem, 4vw, 4.4rem);
+}
+
+.nav-links a {
+  font-family: "Courier New", Courier, monospace;
+  font-size: clamp(1rem, 1.8vw, 1.65rem);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+}
+
+.nav-links a::after {
+  bottom: -0.55rem;
+  height: 2px;
+}
+
+.nav-brand {
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+}
+
+.page {
+  scroll-margin-top: 0;
+}
+
+.page:not(#page-home) {
+  padding-top: 0;
+}
+
+.page-header {
+  padding-top: 32px;
+}
+
+.coming-soon-large {
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-style: normal;
+  color: var(--muted);
+}
+
+.coming-soon-sub {
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  color: var(--muted);
+}
+
+.inline-age {
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-size: inherit;
+  font-weight: 800;
+  color: var(--text);
+  margin-right: 0.25em;
+}
+
+@media (max-width: 760px) {
+  .nav-inner {
+    min-height: auto;
+  }
+
+  .nav-links {
+    justify-content: flex-start;
+  }
+
+  .nav-links a {
+    font-size: 0.86rem;
+  }
+}
+
 /* ─── Contact icons + boxless sections cleanup ─────────── */
 
 .achieve-block,

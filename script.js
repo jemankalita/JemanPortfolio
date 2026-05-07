@@ -18,7 +18,7 @@ function scrollToSection(id) {
   var nav = document.getElementById('main-nav');
   var navHeight = nav ? nav.getBoundingClientRect().height : 0;
   var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
-  var offset = id === '#page-home' ? 0 : Math.max(navHeight + 12, 78);
+  var offset = id === '#page-home' ? 0 : navHeight;
   window.scrollTo({
     top: Math.max(targetTop - offset, 0),
     behavior: 'smooth'
