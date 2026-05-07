@@ -258,4 +258,27 @@ if (heroWrap) {
   });
 })();
 
+// ─── Trait Map / Venn Diagram Logic ───
+(function initTraitMap() {
+  const categories = document.querySelectorAll('.trait-category');
+  const vennWrapper = document.querySelector('.venn-wrapper');
+  if (!categories.length || !vennWrapper) return;
 
+  categories.forEach(cat => {
+    cat.addEventListener('mouseenter', () => {
+      const categoryName = cat.getAttribute('data-category');
+      const targetCircle = document.querySelector(`.venn-${categoryName}`);
+      
+      if (targetCircle) targetCircle.classList.add('active');
+      vennWrapper.classList.add('active-hover');
+    });
+
+    cat.addEventListener('mouseleave', () => {
+      const categoryName = cat.getAttribute('data-category');
+      const targetCircle = document.querySelector(`.venn-${categoryName}`);
+      
+      if (targetCircle) targetCircle.classList.remove('active');
+      vennWrapper.classList.remove('active-hover');
+    });
+  });
+})();
