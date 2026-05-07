@@ -258,6 +258,42 @@ if (heroWrap) {
   });
 })();
 
+// ─── Timeline / Journey Animation ───
+(function initTimeline() {
+  const progressLine = document.getElementById('timeline-progress');
+  const timelineContainer = document.querySelector('.timeline-container');
+  const nodes = document.querySelectorAll('.timeline-node');
+
+  if (!progressLine || !timelineContainer) return;
+
+  function updateTimeline() {
+    const rect = timelineContainer.getBoundingClientRect();
+    // Start filling when the top of the timeline is 50% down the screen
+    const windowMid = window.innerHeight * 0.5; 
+    
+    if (rect.top > windowMid) {
+      progressLine.style.height = '0%';
+    } else if (rect.bottom < windowMid) {
+      progressLine.style.height = '100%';
+    } else {
+      const progress = ((windowMid - rect.top) / rect.height) * 100;
+      progressLine.style.height = `${Math.min(100, Math.max(0, progress))}%`;
+    }
+
+    // Reveal nodes as user scrolls
+    nodes.forEach(node => {
+      const nodeRect = node.getBoundingClientRect();
+      // Reveal when node enters the bottom 85% of the viewport
+      if (nodeRect.top < window.innerHeight * 0.85) {
+        node.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateTimeline, { passive: true });
+  updateTimeline(); // Initial check
+})();
+
 // ─── Systems Background (Subtle Particle Network) ───
 (function initSystemsBackground() {
   const canvas = document.getElementById('systems-canvas');
