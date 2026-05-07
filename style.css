@@ -2277,3 +2277,110 @@ html {
   transform: translateX(3px);
   opacity: 0.9;
 }
+
+/* ═══════════════════════════════════════════
+   PREMIUM POLISH ADDITIONS (Implementation)
+   ═══════════════════════════════════════════ */
+
+/* ─── Scroll Progress ─── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--text);
+  width: 0%;
+  z-index: 1000;
+  transition: width 0.1s ease-out;
+  pointer-events: none;
+}
+:root[data-theme="dark"] #scroll-progress {
+  background: var(--text);
+}
+
+/* ─── Nav Slider ─── */
+.nav-links {
+  position: relative;
+}
+.nav-links a::after {
+  display: none !important; /* Hide old underline logic */
+}
+.nav-slider {
+  position: absolute;
+  bottom: -0.42rem;
+  left: 0;
+  height: 1.5px;
+  background: var(--text);
+  transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1), width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+}
+
+/* ─── Word-by-word Reveal ─── */
+.word-reveal {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+.char-reveal {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+  animation: revealWordUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes revealWordUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Base override to stop original hero/title animations hiding the text */
+.hero-name, .page-title {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* ─── Focus Visible Accessibility ─── */
+:focus-visible {
+  outline: 2px solid var(--text) !important;
+  outline-offset: 4px;
+}
+a:focus-visible, button:focus-visible {
+  border-radius: 4px;
+}
+.nav-links a:focus-visible {
+  outline-offset: 8px;
+}
+
+/* ─── Back to top button ─── */
+#back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+  display: grid;
+  place-items: center;
+}
+#back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+#back-to-top:hover {
+  background: var(--muted);
+  transform: translateY(-2px);
+}
+#back-to-top svg {
+  width: 20px;
+  height: 20px;
+}

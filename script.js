@@ -2,17 +2,57 @@
    JEMAN KALITA — script.js
    ═══════════════════════════════════════════ */
 
-// ─── Nav scroll shadow ─────────────────────
+// ─── Nav scroll shadow & scroll progress & back-to-top ─
 const nav = document.getElementById('main-nav');
+const scrollProgress = document.getElementById('scroll-progress');
+const backToTop = document.getElementById('back-to-top');
+
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 10);
+  const y = window.scrollY;
+  nav.classList.toggle('scrolled', y > 10);
+  
+  // Progress bar
+  if (scrollProgress) {
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = totalHeight > 0 ? (y / totalHeight) * 100 : 0;
+    scrollProgress.style.width = `${progress}%`;
+  }
+  
+  // Back to top
+  if (backToTop) {
+    if (y > 400) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  }
 }, { passive: true });
+
+if (backToTop) {
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
 
 // ─── Scroll-reveal via IntersectionObserver ─
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('is-visible');
+      // Stagger children inside the section if any
+      const childrenToStagger = entry.target.querySelectorAll('.achieve-block, .sport-block, .fun-project-list li, .work-card, .contact-row');
+      childrenToStagger.forEach((child, idx) => {
+        child.style.opacity = '0';
+        child.style.transform = 'translateY(15px)';
+        child.style.transition = `opacity 0.5s ease ${idx * 0.1}s, transform 0.5s ease ${idx * 0.1}s`;
+        
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            child.style.opacity = '1';
+            child.style.transform = 'translateY(0)';
+          });
+        });
+      });
       revealObserver.unobserve(entry.target);
     }
   });
@@ -20,9 +60,50 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 function observeSections() {
   document.querySelectorAll('.section-inner').forEach(el => {
-    // Reset visibility so re-navigation re-animates
     el.classList.remove('is-visible');
     revealObserver.observe(el);
+  });
+}
+
+// ─── Sliding Nav Sync ───────────────────────
+function syncNavSlider() {
+  const activeLink = document.querySelector('.nav-links a.active');
+  const slider = document.querySelector('.nav-slider');
+  const navLinksContainer = document.querySelector('.nav-links');
+  if (activeLink && slider && navLinksContainer) {
+    const linkRect = activeLink.getBoundingClientRect();
+    const containerRect = navLinksContainer.getBoundingClientRect();
+    const leftOffset = linkRect.left - containerRect.left;
+    slider.style.left = `${leftOffset}px`;
+    slider.style.width = `${linkRect.width}px`;
+  }
+}
+window.addEventListener('resize', syncNavSlider);
+
+// ─── Split text for word-by-word reveal ─────
+function splitTextForReveal(selector, baseDelay = 0.1) {
+  document.querySelectorAll(selector).forEach(el => {
+    // Only split if not already split
+    if (el.classList.contains('text-split')) return;
+    
+    const text = el.innerText;
+    el.innerText = '';
+    el.classList.add('text-split');
+    
+    const words = text.split(' ');
+    words.forEach((word, wordIdx) => {
+      const wordSpan = document.createElement('span');
+      wordSpan.className = 'word-reveal';
+      wordSpan.style.marginRight = '0.25em';
+      
+      const charSpan = document.createElement('span');
+      charSpan.className = 'char-reveal';
+      charSpan.style.animationDelay = `${baseDelay + wordIdx * 0.15}s`;
+      charSpan.innerHTML = word === '' ? '&nbsp;' : word;
+      
+      wordSpan.appendChild(charSpan);
+      el.appendChild(wordSpan);
+    });
   });
 }
 
@@ -49,6 +130,7 @@ function showPage(pageId) {
   allLinks.forEach(a => {
     a.classList.toggle('active', a.dataset.page === pageId);
   });
+  syncNavSlider();
 
   // Scroll to top smoothly
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -60,6 +142,10 @@ function showPage(pageId) {
       revealObserver.observe(el);
     });
   });
+
+  // Re-trigger word reveals
+  if (pageId === 'home') splitTextForReveal('#page-home .hero-name');
+  splitTextForReveal(`#page-${pageId} .page-title`);
 
   // Update hash without jump
   history.replaceState(null, '', '#page-' + pageId);
@@ -103,6 +189,12 @@ if (heroWrap) {
   document.querySelectorAll('[data-page]').forEach(a => {
     a.classList.toggle('active', a.dataset.page === startPage);
   });
+
+  syncNavSlider();
+
+  // Initial split text reveals
+  splitTextForReveal('.hero-name', 0.2);
+  splitTextForReveal('.page-title', 0.2);
 
   observeSections();
 })();
