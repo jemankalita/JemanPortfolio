@@ -582,7 +582,7 @@ section:hover .section-inner {
   gap: 2rem;
   align-items: baseline;
   padding: 0.65rem 0.75rem;
-  border-radius: 14px;
+  border-radius: 0;
   transition: background 0.22s ease, transform 0.22s ease;
 }
 
@@ -2133,93 +2133,22 @@ nav {
   }
 }
 
-/* ─── CAL.COM SCHEDULING LINK ─────────────── */
-
-.contact-row--cal {
-  border-top: 1px solid var(--line);
-  margin-top: 0.5rem;
-  padding-top: 1.4rem !important;
-  padding-bottom: 1.4rem !important;
-  display: flex !important;
-  width: 100% !important;
-  align-items: center;
-  margin-right: 0 !important;
-  border-bottom: 0;
-}
-
-.contact-row--cal .contact-label {
-  display: inline-block !important;
-  font-family: Georgia, serif;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  min-width: 110px;
-  flex-shrink: 0;
-  margin-bottom: 0 !important;
-  font-size: clamp(0.62rem, 1vw, 0.72rem) !important;
-}
+/* ─── CAL.COM LINK ────────────────────────── */
 
 .cal-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  color: var(--text);
-  text-decoration: none;
-  border-bottom: 0 !important;
-  opacity: 0.72;
-  transition: opacity 0.22s ease, gap 0.22s ease;
-  font-size: clamp(1.05rem, 2.1vw, 1.7rem);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.cal-link:hover {
-  opacity: 1;
-  gap: 0.9rem;
-}
-
-.cal-logo {
-  width: 1.35em;
-  height: 1.35em;
-  flex-shrink: 0;
-  color: var(--text);
-  opacity: 0.9;
+  gap: 0.6rem;
   transition: opacity 0.22s ease;
 }
 
-.cal-text {
-  border-bottom: 1px solid rgba(5, 5, 5, 0.2);
-  padding-bottom: 0.06em;
-  transition: border-color 0.22s ease;
-}
-
-.cal-link:hover .cal-text {
-  border-color: var(--text);
-}
-
 .cal-arrow {
-  width: 0.85em;
-  height: 0.85em;
+  width: 0.72em;
+  height: 0.72em;
   flex-shrink: 0;
-  color: var(--text);
-  opacity: 0.6;
+  opacity: 0.5;
   transition: transform 0.22s ease, opacity 0.22s ease;
 }
 
 .cal-link:hover .cal-arrow {
   transform: translateX(3px);
-  opacity: 1;
-}
-
-@media (max-width: 680px) {
-  .contact-row--cal {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.6rem;
-  }
-
-  .contact-row--cal .contact-label {
-    min-width: unset;
-    margin-bottom: 0.2rem !important;
-  }
+  opacity: 0.9;
 }
