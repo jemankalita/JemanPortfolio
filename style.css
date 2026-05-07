@@ -2399,3 +2399,354 @@ a:focus-visible, button:focus-visible {
   opacity: 1;
   transform: translateX(-50%) translateY(0) scale(1);
 }
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE POLISH — Premium Responsive Overhaul
+   Applies to phones ≤ 480px and small tablets ≤ 680px
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Shared mobile base (≤ 680px) ─────────────────────── */
+@media (max-width: 680px) {
+
+  /* --- Body & global --- */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* --- Navigation --- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.25rem 0.75rem;
+    min-height: auto;
+  }
+
+  .nav-brand {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    align-self: center;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.2rem 0.75rem;
+    max-width: 100%;
+    overflow-x: visible;
+    padding-bottom: 0;
+  }
+
+  .nav-links a {
+    flex: 0 0 auto;
+    font-size: 0.64rem;
+    letter-spacing: 0.13em;
+    padding: 0.28rem 0.4rem;
+    white-space: nowrap;
+  }
+
+  /* Keep the slider hidden on mobile — wrapping nav breaks absolute positioning */
+  .nav-slider {
+    display: none;
+  }
+
+  /* --- Hero section --- */
+  header {
+    padding: 0;
+  }
+
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    padding: 2rem 1.25rem 2.5rem;
+    min-height: auto;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-name {
+    font-size: clamp(2.6rem, 11.5vw, 3.8rem);
+    letter-spacing: -0.03em;
+    line-height: 0.92;
+    white-space: normal;
+    word-break: break-word;
+    margin-bottom: 1.1rem;
+    max-width: 100%;
+  }
+
+  .hero-philosophy {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    max-width: 30rem;
+    text-align: center;
+  }
+
+  .hero-image-wrap {
+    width: min(200px, 56vw);
+    max-width: none;
+    align-self: center;
+    justify-self: center;
+    order: -1; /* portrait above name on mobile */
+  }
+
+  .hero-portrait {
+    width: 100%;
+    height: auto;
+    max-height: 280px;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  /* --- Sections --- */
+  section {
+    padding: 40px 0;
+  }
+
+  .section-inner {
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 0 1.25rem;
+    align-items: flex-start;
+  }
+
+  .section-label {
+    min-width: unset;
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    padding-top: 0;
+    margin-bottom: 0.2rem;
+  }
+
+  .section-content {
+    width: 100%;
+  }
+
+  /* --- Body text --- */
+  .body-text {
+    font-size: 0.92rem;
+    line-height: 1.82;
+    max-width: 100%;
+  }
+
+  .body-text + .body-text {
+    margin-top: 1.1rem;
+  }
+
+  /* --- Dividers --- */
+  .divider {
+    max-width: calc(100% - 2.5rem);
+    margin: 0 1.25rem;
+  }
+
+  /* --- Page headers (non-home pages) --- */
+  .page-header {
+    padding: 2rem 0 1.75rem;
+  }
+
+  .page-header-inner {
+    padding: 0 1.25rem;
+  }
+
+  .page-title {
+    font-size: clamp(2.2rem, 10vw, 3.4rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+
+  .page-subtitle {
+    font-size: 0.84rem;
+    margin-top: 0.45rem;
+    line-height: 1.6;
+  }
+
+  /* --- Achievement blocks --- */
+  .achieve-block {
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .achieve-tag {
+    font-size: 0.58rem;
+  }
+
+  .achieve-title {
+    font-size: 0.95rem;
+  }
+
+  .achieve-desc {
+    font-size: 0.84rem;
+  }
+
+  /* --- Sports blocks --- */
+  .sport-block {
+    padding: 1.1rem 0;
+  }
+
+  .sport-name {
+    font-size: 0.95rem;
+  }
+
+  .sport-achievement {
+    font-size: 0.84rem;
+  }
+
+  /* --- Education --- */
+  .school-title {
+    gap: 0.75rem;
+  }
+
+  .school-logo {
+    width: 52px;
+    height: 52px;
+  }
+
+  .edu-school {
+    font-size: 0.94rem;
+  }
+
+  /* --- Contact --- */
+  .contact-shell {
+    display: block;
+    max-width: 100%;
+  }
+
+  .contact-list {
+    max-width: 100%;
+  }
+
+  .contact-row {
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.85rem 0;
+  }
+
+  .contact-row:first-child {
+    padding: 1.4rem 0;
+  }
+
+  .contact-row:first-child .contact-link {
+    font-size: clamp(1.8rem, 8vw, 3rem);
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    word-break: break-all;
+  }
+
+  .contact-row:not(:first-child) {
+    display: flex;
+    width: 100%;
+    margin-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 0.85rem 0;
+  }
+
+  .contact-label {
+    display: block !important;
+    font-size: 0.6rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-link {
+    font-size: 0.92rem;
+  }
+
+  /* --- Projects grid --- */
+  .project-grid,
+  .large-works-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .work-card {
+    max-width: 100%;
+  }
+
+  /* --- Footer --- */
+  .footer-inner {
+    padding: 1.25rem 1.25rem 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+    text-align: center;
+  }
+
+  /* --- Info cards: prevent overflow on mobile --- */
+  .info-card {
+    width: min(260px, calc(100vw - 2.5rem));
+    left: 50%;
+  }
+
+  .info-card-person {
+    width: min(260px, calc(100vw - 2.5rem));
+  }
+
+  /* --- Coming soon blocks --- */
+  .coming-projects {
+    min-height: 140px;
+  }
+
+  .coming-title {
+    font-size: clamp(1.7rem, 8vw, 2.6rem);
+  }
+
+  .coming-copy {
+    font-size: 0.84rem;
+    text-align: left;
+    max-width: 100%;
+  }
+}
+
+/* ─── Extra small phones (≤ 400px) ─────────────────────── */
+@media (max-width: 400px) {
+
+  .nav-inner {
+    padding: 0.7rem 1rem 0.65rem;
+  }
+
+  .nav-links a {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    padding: 0.24rem 0.32rem;
+  }
+
+  .hero-name {
+    font-size: clamp(2.2rem, 12vw, 3rem);
+  }
+
+  .hero-image-wrap {
+    width: min(170px, 52vw);
+  }
+
+  .hero-portrait {
+    max-height: 240px;
+  }
+
+  .body-text {
+    font-size: 0.89rem;
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 11vw, 3rem);
+  }
+
+  .contact-row:first-child .contact-link {
+    font-size: clamp(1.5rem, 9vw, 2.2rem);
+  }
+}
