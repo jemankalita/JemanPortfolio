@@ -100,7 +100,7 @@ nav.scrolled {
 /* ─── HERO ────────────────────────────────── */
 
 header {
-  padding: 85px 0 50px;
+  padding: 0;
 }
 
 .hero-inner {
@@ -511,7 +511,7 @@ section:hover .section-inner {
 /* ─── PAGE HEADERS ────────────────────────── */
 
 .page-header {
-  padding: 85px 0 56px;
+  padding: 40px 0 56px;
 }
 
 .page-header-inner {
@@ -1929,8 +1929,9 @@ nav {
   grid-template-columns: minmax(0, 1fr) clamp(240px, 24vw, 340px);
   min-height: calc(100vh - 170px);
   gap: clamp(2rem, 5vw, 5rem);
-  padding-top: clamp(3rem, 8vh, 7rem);
+  padding-top: clamp(1rem, 3vh, 3rem);
   padding-bottom: clamp(3rem, 8vh, 6rem);
+  align-content: start;
 }
 
 .hero-name {
