@@ -824,6 +824,64 @@ footer {
   }
 }
 
+/* ─── Logo + navigation visibility final patch ─────────── */
+
+nav {
+  border-bottom: 2px solid rgba(5, 5, 5, 0.34);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset;
+}
+
+nav.scrolled {
+  border-bottom-color: rgba(5, 5, 5, 0.48);
+}
+
+.page {
+  scroll-margin-top: 84px;
+}
+
+.page:not(#page-home) {
+  padding-top: 18px;
+}
+
+.page-header {
+  padding-top: 28px;
+}
+
+#page-contact .page-header {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.school-title {
+  align-items: center;
+  gap: 1rem;
+}
+
+.school-logo {
+  width: 86px;
+  height: 86px;
+  padding: 0.35rem;
+  object-fit: contain;
+  border: 1px solid rgba(5, 5, 5, 0.16);
+  border-radius: 8px;
+  background: #fff;
+}
+
+@media (max-width: 680px) {
+  .page {
+    scroll-margin-top: 126px;
+  }
+
+  .page:not(#page-home) {
+    padding-top: 10px;
+  }
+
+  .school-logo {
+    width: 68px;
+    height: 68px;
+  }
+}
+
 /* ─── Minimal technical refresh ───────────────────────── */
 
 body {
