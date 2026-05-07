@@ -258,40 +258,37 @@ if (heroWrap) {
   });
 })();
 
-// ─── Timeline / Journey Animation ───
+// ─── Timeline / Journey Animation (Horizontal) ───
 (function initTimeline() {
   const progressLine = document.getElementById('timeline-progress');
-  const timelineContainer = document.querySelector('.timeline-container');
+  const timelineContainer = document.getElementById('timeline-container');
   const nodes = document.querySelectorAll('.timeline-node');
 
   if (!progressLine || !timelineContainer) return;
 
   function updateTimeline() {
-    const rect = timelineContainer.getBoundingClientRect();
-    // Start filling when the top of the timeline is 50% down the screen
-    const windowMid = window.innerHeight * 0.5; 
-    
-    if (rect.top > windowMid) {
-      progressLine.style.height = '0%';
-    } else if (rect.bottom < windowMid) {
-      progressLine.style.height = '100%';
-    } else {
-      const progress = ((windowMid - rect.top) / rect.height) * 100;
-      progressLine.style.height = `${Math.min(100, Math.max(0, progress))}%`;
-    }
+    // 1. Update horizontal progress line based on scroll within container
+    const scrollLeft = timelineContainer.scrollLeft;
+    const scrollWidth = timelineContainer.scrollWidth - timelineContainer.clientWidth;
+    const progress = scrollWidth > 0 ? (scrollLeft / scrollWidth) * 100 : 0;
+    progressLine.style.width = `${progress}%`;
 
-    // Reveal nodes as user scrolls
+    // 2. Reveal nodes as they come into view (horizontally and vertically)
     nodes.forEach(node => {
-      const nodeRect = node.getBoundingClientRect();
-      // Reveal when node enters the bottom 85% of the viewport
-      if (nodeRect.top < window.innerHeight * 0.85) {
+      const rect = node.getBoundingClientRect();
+      // If node is within horizontal viewport AND vertical viewport
+      if (rect.left < window.innerWidth * 0.9 && rect.top < window.innerHeight * 0.85) {
         node.classList.add('visible');
       }
     });
   }
 
+  // Listen to both window scroll (for vertical reveal) and container scroll (for horizontal line/reveal)
   window.addEventListener('scroll', updateTimeline, { passive: true });
-  updateTimeline(); // Initial check
+  timelineContainer.addEventListener('scroll', updateTimeline, { passive: true });
+  
+  // Initial check
+  updateTimeline(); 
 })();
 
 // ─── Systems Background (Subtle Particle Network) ───
