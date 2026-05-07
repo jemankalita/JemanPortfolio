@@ -2751,3 +2751,11 @@ a:focus-visible, button:focus-visible {
   }
 }
 
+/* ─── Footer changelog note ─────────────────── */
+.footer-updated {
+  font-size: 0.68em;
+  letter-spacing: 0.06em;
+  color: var(--muted, #aaa);
+  opacity: 0.55;
+  margin-left: 0.4em;
+}

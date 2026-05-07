@@ -147,8 +147,9 @@ function showPage(pageId) {
   if (pageId === 'home') splitTextForReveal('#page-home .hero-name');
   splitTextForReveal(`#page-${pageId} .page-title`);
 
-  // Update hash without jump
-  history.replaceState(null, '', '#page-' + pageId);
+  // Update hash without jump — clean URL (e.g. #contact not #page-contact)
+  const cleanHash = pageId === 'home' ? '#' : '#' + pageId;
+  history.replaceState(null, '', cleanHash);
 }
 
 // ─── Bind nav links ──────────────────────────
@@ -171,9 +172,10 @@ if (heroWrap) {
 // ─── Init ────────────────────────────────────
 (function init() {
   // Show home page or hash-specified page on load
-  const hash = location.hash.replace('#page-', '') || 'home';
+  // Support both old (#page-contact) and new (#contact) hash formats
+  const rawHash = location.hash.replace(/^#(page-)?/, '') || 'home';
   const validPages = ['home', 'achievements', 'projects', 'blogs', 'interests', 'contact'];
-  const startPage = validPages.includes(hash) ? hash : 'home';
+  const startPage = validPages.includes(rawHash) ? rawHash : 'home';
 
   document.querySelectorAll('.page').forEach(p => {
     p.style.display = 'none';
