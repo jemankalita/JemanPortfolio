@@ -1832,17 +1832,6 @@ nav {
     max-height: none;
   }
 
-  .info-card,
-  .info-card-person {
-    left: 0;
-    width: min(280px, calc(100vw - 2rem));
-    transform: translateY(8px) scale(0.98);
-  }
-
-  .info-token:hover .info-card,
-  .info-token:focus-visible .info-card {
-    transform: translateY(0) scale(1);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2684,7 +2673,6 @@ a:focus-visible, button:focus-visible {
   /* --- Info cards: prevent overflow on mobile --- */
   .info-card {
     width: min(260px, calc(100vw - 2.5rem));
-    left: 50%;
   }
 
   .info-card-person {
