@@ -1,86 +1,108 @@
-/* ==============================================
+/* ═══════════════════════════════════════════
    JEMAN KALITA — script.js
-   Smooth section navigation + scroll reveal
-   ============================================== */
+   ═══════════════════════════════════════════ */
 
-var sections = Array.prototype.slice.call(document.querySelectorAll('.page'));
-var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+// ─── Nav scroll shadow ─────────────────────
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
 
-function setActiveNav(pageName) {
-  navLinks.forEach(function(link) {
-    link.classList.toggle('active', link.dataset.page === pageName);
-  });
-}
-
-function scrollToSection(id) {
-  var target = document.querySelector(id);
-  if (!target) return;
-  var nav = document.getElementById('main-nav');
-  var navHeight = nav ? nav.getBoundingClientRect().height : 0;
-  var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
-  var offset = id === '#page-home' ? 0 : navHeight;
-  window.scrollTo({
-    top: Math.max(targetTop - offset, 0),
-    behavior: 'smooth'
-  });
-}
-
-navLinks.forEach(function(link) {
-  link.addEventListener('click', function(event) {
-    event.preventDefault();
-    scrollToSection(link.getAttribute('href'));
-  });
-});
-
-var brand = document.querySelector('.nav-brand');
-if (brand) {
-  brand.addEventListener('click', function(event) {
-    event.preventDefault();
-    scrollToSection('#page-home');
-  });
-}
-
-var sectionObserver = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      setActiveNav(entry.target.id.replace('page-', ''));
-    }
-  });
-}, {
-  rootMargin: '-42% 0px -48% 0px',
-  threshold: 0
-});
-
-sections.forEach(function(section) {
-  sectionObserver.observe(section);
-});
-
-var revealObserver = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
+// ─── Scroll-reveal via IntersectionObserver ─
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('is-visible');
       revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-document.querySelectorAll('.section-inner, .page-header-inner, footer').forEach(function(el) {
-  el.classList.add('reveal');
-  revealObserver.observe(el);
+function observeSections() {
+  document.querySelectorAll('.section-inner').forEach(el => {
+    // Reset visibility so re-navigation re-animates
+    el.classList.remove('is-visible');
+    revealObserver.observe(el);
+  });
+}
+
+// ─── Page switching ─────────────────────────
+function showPage(pageId) {
+  const allPages = document.querySelectorAll('.page');
+  const allLinks = document.querySelectorAll('.nav-links a, .nav-brand');
+
+  allPages.forEach(p => {
+    p.classList.remove('active');
+    p.style.display = 'none';
+  });
+
+  const target = document.getElementById('page-' + pageId);
+  if (!target) return;
+
+  // Force animation restart by briefly removing and re-adding active
+  target.style.display = 'block';
+  // Trigger reflow so animation re-fires
+  void target.offsetWidth;
+  target.classList.add('active');
+
+  // Update nav active state
+  allLinks.forEach(a => {
+    a.classList.toggle('active', a.dataset.page === pageId);
+  });
+
+  // Scroll to top smoothly
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Re-observe sections in the newly shown page
+  requestAnimationFrame(() => {
+    target.querySelectorAll('.section-inner').forEach(el => {
+      el.classList.remove('is-visible');
+      revealObserver.observe(el);
+    });
+  });
+
+  // Update hash without jump
+  history.replaceState(null, '', '#page-' + pageId);
+}
+
+// ─── Bind nav links ──────────────────────────
+document.querySelectorAll('[data-page]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    showPage(link.dataset.page);
+  });
 });
 
-window.addEventListener('scroll', function() {
-  var nav = document.getElementById('main-nav');
-  if (nav) {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
+// ─── Parallax on hero image ──────────────────
+const heroWrap = document.querySelector('.hero-image-wrap');
+if (heroWrap) {
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    heroWrap.style.setProperty('--parallax-y', `${y * 0.08}px`);
+  }, { passive: true });
+}
+
+// ─── Init ────────────────────────────────────
+(function init() {
+  // Show home page or hash-specified page on load
+  const hash = location.hash.replace('#page-', '') || 'home';
+  const validPages = ['home', 'achievements', 'projects', 'blogs', 'interests', 'contact'];
+  const startPage = validPages.includes(hash) ? hash : 'home';
+
+  document.querySelectorAll('.page').forEach(p => {
+    p.style.display = 'none';
+    p.classList.remove('active');
+  });
+
+  const startEl = document.getElementById('page-' + startPage);
+  if (startEl) {
+    startEl.style.display = 'block';
+    startEl.classList.add('active');
   }
 
-  var portrait = document.querySelector('.hero-image-wrap');
-  if (portrait) {
-    portrait.style.setProperty('--parallax-y', Math.min(window.scrollY * 0.025, 14) + 'px');
-  }
-});
+  document.querySelectorAll('[data-page]').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === startPage);
+  });
 
-window.addEventListener('load', function() {
-  document.body.classList.add('loaded');
-});
+  observeSections();
+})();
