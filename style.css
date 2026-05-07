@@ -100,7 +100,7 @@ nav.scrolled {
 /* ─── HERO ────────────────────────────────── */
 
 header {
-  padding: 130px 0 72px;
+  padding: 85px 0 50px;
 }
 
 .hero-inner {
@@ -511,7 +511,7 @@ section:hover .section-inner {
 /* ─── PAGE HEADERS ────────────────────────── */
 
 .page-header {
-  padding: 40px 0 56px;
+  padding: 85px 0 56px;
 }
 
 .page-header-inner {
