@@ -824,6 +824,74 @@ footer {
   }
 }
 
+/* ─── Contact icons + boxless sections cleanup ─────────── */
+
+.achieve-block,
+.sport-block {
+  padding-left: 0;
+  padding-right: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.sport-block,
+.sport-block:first-child {
+  border-top: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.coming-projects {
+  min-height: 180px;
+  place-items: start;
+  align-content: start;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.coming-projects:hover {
+  transform: none;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.coming-projects::before,
+.coming-orbit {
+  display: none;
+}
+
+.coming-title {
+  font-size: clamp(2rem, 5vw, 4.4rem);
+  line-height: 1;
+}
+
+.coming-copy {
+  text-align: left;
+}
+
+.social-link {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.social-link svg {
+  width: 1em;
+  height: 1em;
+  flex: 0 0 auto;
+  fill: currentColor;
+}
+
+.contact-row:not(:first-child) .social-link {
+  border-bottom: 1px solid transparent;
+}
+
+.contact-row:not(:first-child) .social-link:hover {
+  border-color: var(--text);
+}
+
 /* ─── Logo + navigation visibility final patch ─────────── */
 
 nav {
