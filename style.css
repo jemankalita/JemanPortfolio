@@ -276,6 +276,11 @@ section:hover .section-inner {
   vertical-align: baseline;
 }
 
+.inline-age--number {
+  font-size: 1.2em;
+  letter-spacing: -0.01em;
+}
+
 .wiki-hover {
   position: relative;
   color: #7a4d23;
