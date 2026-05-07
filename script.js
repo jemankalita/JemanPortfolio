@@ -2,6 +2,31 @@
    JEMAN KALITA — script.js
    ═══════════════════════════════════════════ */
 
+// ─── Dark mode ───────────────────────────────
+(function initTheme() {
+  const root = document.documentElement;
+  const saved = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const theme = saved || (prefersDark ? 'dark' : 'light');
+  if (theme === 'dark') root.setAttribute('data-theme', 'dark');
+
+  // Wire toggle after DOM ready
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        root.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+      } else {
+        root.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  });
+})();
+
 // ─── Nav scroll shadow & scroll progress & back-to-top ─
 const nav = document.getElementById('main-nav');
 const scrollProgress = document.getElementById('scroll-progress');
