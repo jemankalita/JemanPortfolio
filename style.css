@@ -276,6 +276,11 @@ section:hover .section-inner {
   vertical-align: baseline;
 }
 
+.inline-age--number {
+  font-size: 1.2em;
+  letter-spacing: -0.01em;
+}
+
 .wiki-hover {
   position: relative;
   color: #7a4d23;
@@ -2145,7 +2150,6 @@ nav {
 .contact-row--cal .contact-label {
   display: inline-block !important;
   font-family: Georgia, serif;
-  font-size: 0.67rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted);
@@ -2172,10 +2176,6 @@ nav {
 .cal-link:hover {
   opacity: 1;
   gap: 0.9rem;
-}
-
-.cal-link:hover .cal-arrow {
-  transform: translateX(3px);
 }
 
 .cal-logo {
@@ -2207,6 +2207,7 @@ nav {
 }
 
 .cal-link:hover .cal-arrow {
+  transform: translateX(3px);
   opacity: 1;
 }
 
