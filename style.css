@@ -2733,6 +2733,60 @@ a:focus-visible, button:focus-visible {
   }
 }
 
+/* ─── Timeline ──────────────────────────────── */
+.timeline {
+  position: relative;
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 2.5rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -1.5rem;
+  top: 0.4rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--text);
+  transform: translateX(-50%);
+  outline: 4px solid var(--bg); /* create a gap in the line */
+}
+
+.timeline-date {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.timeline-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  margin: 0 0 0.4rem 0;
+  letter-spacing: -0.01em;
+}
+
+.timeline-desc {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0;
+}
+
 /* ─── Footer changelog note ─────────────────── */
 .footer-updated {
   font-size: 0.68em;
