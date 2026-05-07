@@ -1916,13 +1916,7 @@ nav {
   min-height: calc(100vh - 92px);
 }
 
-.page footer {
-  display: none;
-}
 
-#page-contact footer {
-  display: block;
-}
 
 .hero-inner {
   display: grid;

@@ -201,30 +201,59 @@ if (heroWrap) {
   observeSections();
 })();
 
-// ─── Smart info-card flip (above ↔ below) ───
+// ─── Smart info-card flip (above ↔ below) + horizontal clamp ───
 (function initInfoCardFlip() {
-  const CARD_ESTIMATED_HEIGHT = 160; // px — enough buffer for most cards
-  const MARGIN = 12; // gap between token and card
+  const CARD_ESTIMATED_HEIGHT = 160; // px — buffer for most cards
+  const V_MARGIN = 12;  // gap between token and card (vertical)
+  const H_MARGIN = 10;  // min gap from viewport edges (horizontal)
 
   function positionCard(token) {
     const card = token.querySelector('.info-card');
     if (!card) return;
 
-    const rect = token.getBoundingClientRect();
-    const spaceAbove = rect.top;
-    const spaceBelow = window.innerHeight - rect.bottom;
+    // ── Reset any previous horizontal nudge ──
+    card.style.marginLeft = '';
 
-    const cardHeight = card.offsetHeight || CARD_ESTIMATED_HEIGHT;
+    const tokenRect = token.getBoundingClientRect();
+    const spaceAbove  = tokenRect.top;
+    const spaceBelow  = window.innerHeight - tokenRect.bottom;
+    const cardHeight  = card.offsetHeight || CARD_ESTIMATED_HEIGHT;
 
-    if (spaceAbove < cardHeight + MARGIN && spaceBelow > spaceAbove) {
+    // ── 1. Vertical flip ──────────────────────
+    if (spaceAbove < cardHeight + V_MARGIN && spaceBelow > spaceAbove) {
       token.classList.add('card-flip');
     } else {
       token.classList.remove('card-flip');
     }
+
+    // ── 2. Horizontal clamp ───────────────────
+    // The card is in the DOM (opacity:0), so getBoundingClientRect() returns its real position.
+    const cardRect = card.getBoundingClientRect();
+    const vw = window.innerWidth;
+
+    let nudge = 0;
+    if (cardRect.left < H_MARGIN) {
+      // Overflows left edge → push right
+      nudge = H_MARGIN - cardRect.left;
+    } else if (cardRect.right > vw - H_MARGIN) {
+      // Overflows right edge → push left
+      nudge = (vw - H_MARGIN) - cardRect.right;
+    }
+
+    if (nudge !== 0) {
+      card.style.marginLeft = nudge + 'px';
+    }
+  }
+
+  function resetCard(token) {
+    const card = token.querySelector('.info-card');
+    if (card) card.style.marginLeft = '';
   }
 
   document.querySelectorAll('.info-token').forEach(token => {
     token.addEventListener('mouseenter', () => positionCard(token));
     token.addEventListener('focusin',    () => positionCard(token));
+    token.addEventListener('mouseleave', () => resetCard(token));
+    token.addEventListener('focusout',   () => resetCard(token));
   });
 })();
