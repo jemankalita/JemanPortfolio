@@ -216,28 +216,47 @@ const PORTAL_DATA = {
     title: 'Sports',
     intro: 'Systems at the limit. A deep dive into the engineering of Formula 1 and the tactical geometry of modern Football.',
     content: `
-      <div class="subsection-grid">
-        <div class="sub-col">
-          <span class="sub-header">Formula 1</span>
-          <div class="f1-ui">
-            <div class="t-line">STATUS: OPTIMIZED</div>
-            <div class="t-line">DRIVERS: SENNA / HAMILTON / VERSTAPPEN</div>
-            <div class="t-line">CONSTRUCTORS: MERCEDES / MCLAREN</div>
+      <div class="editorial-archive-grid">
+        <!-- F1 Area -->
+        <div class="editorial-block">
+          <div class="editorial-banner f1-banner" style="background: url('https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?q=80&w=1000&auto=format&fit=crop') center/cover;">
+            <div class="telemetry-ui">
+              <span class="t-label">SCUDERIA FERRARI \\ OPTIMIZED</span>
+              <svg viewBox="0 0 100 20" class="t-line-svg"><path d="M0,10 Q25,0 50,10 T100,10" /></svg>
+            </div>
+            <h3 class="banner-title">Formula 1</h3>
           </div>
-          <div class="sub-item">
-            <h4>Engineering Obsession</h4>
-            <p>Analyzing aero-elasticity and the limits of material science in the pursuit of a 0.001s edge.</p>
+          <div class="editorial-content">
+            <div class="content-group">
+              <h4>Favorite Drivers</h4>
+              <p>Ayrton Senna, Lewis Hamilton, Max Verstappen</p>
+            </div>
+            <div class="content-group">
+              <h4>Engineering Obsession</h4>
+              <p>Aero-elasticity, hybrid power units, and the pursuit of the 0.001s edge.</p>
+            </div>
           </div>
         </div>
-        <div class="sub-col">
-          <span class="sub-header">Football</span>
-          <div class="sub-item">
-            <h4>Tactical Geometry</h4>
-            <p>Juego de Posición, half-spaces, and the structural occupation of the pitch.</p>
+
+        <!-- Football Area -->
+        <div class="editorial-block">
+          <div class="editorial-banner football-banner" style="background: url('https://images.unsplash.com/photo-1508344928928-7137b29de216?q=80&w=1000&auto=format&fit=crop') center/cover;">
+            <div class="tactical-ui">
+              <span class="tac-node"></span>
+              <span class="tac-node"></span>
+              <span class="tac-node"></span>
+            </div>
+            <h3 class="banner-title">Football</h3>
           </div>
-          <div class="sub-item">
-            <h4>Arsenal FC</h4>
-            <p>A club built on values, aesthetic football, and a commitment to evolution.</p>
+          <div class="editorial-content">
+            <div class="content-group">
+              <h4>Tactical Geometry</h4>
+              <p>Juego de Posición, half-spaces, and structural dominance.</p>
+            </div>
+            <div class="content-group">
+              <h4>Arsenal FC</h4>
+              <p>Values, aesthetic football, and a commitment to long-term evolution.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -248,19 +267,21 @@ const PORTAL_DATA = {
     title: 'Poker',
     intro: 'The ultimate test of decision-making under uncertainty. Separating the quality of the move from the randomness of the outcome.',
     content: `
-      <div class="subsection-grid">
-        <div class="sub-col">
-          <span class="sub-header">Strategy</span>
-          <div class="sub-item">
-            <h4>Expected Value (EV+)</h4>
-            <p>Developing an intuitive sense of long-term probability in high-pressure environments.</p>
+      <div class="editorial-archive-grid">
+        <div class="editorial-block">
+          <div class="editorial-banner poker-banner" style="background: url('https://images.unsplash.com/photo-1511193311914-0346f16efe90?q=80&w=1000&auto=format&fit=crop') center/cover;">
+            <div class="probability-overlay">EV+ = &Sigma; (P &times; V)</div>
+            <h3 class="banner-title">Mindset</h3>
           </div>
-        </div>
-        <div class="sub-col">
-          <span class="sub-header">Psychology</span>
-          <div class="sub-item">
-            <h4>Game Theory Optimal</h4>
-            <p>Balancing unexploitable play with the courage to punish opponent deviations.</p>
+          <div class="editorial-content">
+            <div class="content-group">
+              <h4>Expected Value (EV+)</h4>
+              <p>Developing an intuitive sense of long-term probability in high-pressure environments.</p>
+            </div>
+            <div class="content-group">
+              <h4>Game Theory Optimal</h4>
+              <p>Balancing unexploitable play with the courage to punish opponent deviations.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -271,15 +292,21 @@ const PORTAL_DATA = {
     title: 'Cinema',
     intro: 'A curated archive of cinematography, pacing, and subtext. My personal Letterboxd ecosystem.',
     content: `
-      <div class="subsection-grid">
-        <div class="sub-col">
-          <span class="sub-header">Favorite Directors</span>
-          <div class="sub-item"><h4>Christopher Nolan</h4><p>Temporal mechanics and grand-scale systems.</p></div>
-          <div class="sub-item"><h4>Denis Villeneuve</h4><p>Atmospheric world-building and brutalist aesthetics.</p></div>
-        </div>
-        <div class="sub-col">
-          <span class="sub-header">Top 4</span>
-          <div class="sub-item"><p>Inception, Blade Runner 2049, Interstellar, The Prestige.</p></div>
+      <div class="editorial-archive-grid">
+        <div class="editorial-block">
+          <div class="editorial-banner cinema-banner" style="background: url('https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1000&auto=format&fit=crop') center/cover;">
+            <h3 class="banner-title">The Archive</h3>
+          </div>
+          <div class="editorial-content">
+            <div class="content-group">
+              <h4>Favorite Directors</h4>
+              <p>Christopher Nolan, Denis Villeneuve, David Fincher</p>
+            </div>
+            <div class="content-group">
+              <h4>Top 4</h4>
+              <p>Inception, Blade Runner 2049, Interstellar, The Prestige</p>
+            </div>
+          </div>
         </div>
       </div>
     `
@@ -289,15 +316,21 @@ const PORTAL_DATA = {
     title: 'The Library',
     intro: 'Books that have fundamentally changed how I perceive systems, startups, and human behavior.',
     content: `
-      <div class="subsection-grid">
-        <div class="sub-col">
-          <span class="sub-header">Core Reading</span>
-          <div class="sub-item"><h4>Antifragile</h4><p>Nassim Taleb on systems that gain from disorder.</p></div>
-          <div class="sub-item"><h4>Zero to One</h4><p>Peter Thiel on the secrets of the future.</p></div>
-        </div>
-        <div class="sub-col">
-          <span class="sub-header">Status</span>
-          <div class="sub-item"><p>Currently Reading: "Thinking in Bets" by Annie Duke.</p></div>
+      <div class="editorial-archive-grid">
+        <div class="editorial-block">
+          <div class="editorial-banner books-banner" style="background: url('https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=1000&auto=format&fit=crop') center/cover;">
+            <h3 class="banner-title">Core Reading</h3>
+          </div>
+          <div class="editorial-content">
+            <div class="content-group">
+              <h4>Antifragile</h4>
+              <p>Nassim Taleb on systems that gain from disorder.</p>
+            </div>
+            <div class="content-group">
+              <h4>Zero to One</h4>
+              <p>Peter Thiel on the secrets of the future.</p>
+            </div>
+          </div>
         </div>
       </div>
     `
@@ -307,14 +340,21 @@ const PORTAL_DATA = {
     title: 'Stash',
     intro: 'Deep internet rabbit holes, research papers, and niche topics worth a lifetime of study.',
     content: `
-      <div class="subsection-grid">
-        <div class="sub-col">
-          <span class="sub-header">Active Research</span>
-          <div class="sub-item"><h4>Behavioral Finance</h4><p>Market microstructures and human irrationality.</p></div>
-        </div>
-        <div class="sub-col">
-          <span class="sub-header">Rabbit Holes</span>
-          <div class="sub-item"><p>High-frequency trading networks, AI safety, and the history of cryptography.</p></div>
+      <div class="editorial-archive-grid">
+        <div class="editorial-block">
+          <div class="editorial-banner stash-banner" style="background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop') center/cover;">
+            <h3 class="banner-title">Active Research</h3>
+          </div>
+          <div class="editorial-content">
+            <div class="content-group">
+              <h4>Behavioral Finance</h4>
+              <p>Market microstructures and human irrationality.</p>
+            </div>
+            <div class="content-group">
+              <h4>Rabbit Holes</h4>
+              <p>High-frequency trading networks, AI safety, and cryptography.</p>
+            </div>
+          </div>
         </div>
       </div>
     `
@@ -324,15 +364,21 @@ const PORTAL_DATA = {
     title: 'Inspiration',
     intro: 'A curated wall of founders, polymaths, and thinkers who have defined new ways of being.',
     content: `
-      <div class="subsection-grid">
-        <div class="sub-col">
-          <span class="sub-header">Founders</span>
-          <div class="sub-item"><h4>Elon Musk</h4><p>Physics-first thinking at massive scale.</p></div>
-          <div class="sub-item"><h4>Peter Thiel</h4><p>Contrarian philosophy and monopoly building.</p></div>
-        </div>
-        <div class="sub-col">
-          <span class="sub-header">Athletes</span>
-          <div class="sub-item"><h4>Lewis Hamilton</h4><p>Mastery of consistency under extreme pressure.</p></div>
+      <div class="editorial-archive-grid">
+        <div class="editorial-block">
+          <div class="editorial-banner people-banner" style="background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop') center/cover; filter: grayscale(1);">
+            <h3 class="banner-title">The Network</h3>
+          </div>
+          <div class="editorial-content">
+            <div class="content-group">
+              <h4>Founders & Builders</h4>
+              <p>Peter Thiel, Alexandr Wang, Tanay Kothari</p>
+            </div>
+            <div class="content-group">
+              <h4>Athletes</h4>
+              <p>Lewis Hamilton, Lionel Messi</p>
+            </div>
+          </div>
         </div>
       </div>
     `
@@ -376,6 +422,12 @@ function closePortalView() {
   if (!portalModal) return;
   portalModal.classList.remove('active');
   document.body.style.overflow = '';
+  
+  // Smoothly reset scroll position after transition completes
+  setTimeout(() => {
+    const container = portalModal.querySelector('.modal-container');
+    if (container) container.scrollTop = 0;
+  }, 600);
 }
 
 if (portalCloseBtn) portalCloseBtn.addEventListener('click', closePortalView);

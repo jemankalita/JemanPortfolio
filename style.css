@@ -3129,8 +3129,72 @@ header#overview + .divider {
   padding: 0;
   box-shadow: none;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
+.modal-close {
+  position: fixed;
+  top: 2.5rem;
+  left: 2.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0,0,0,0.05);
+  padding: 0.8rem 1.5rem;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: Inter, "Helvetica Neue", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #111;
+  cursor: pointer;
+  z-index: 20000;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, color 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.modal-close:hover {
+  background: #111;
+  color: #fff;
+  transform: translateY(-2px);
+  border-color: #111;
+}
+
+/* --- Slideshow Animated Covers --- */
+.slideshow-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  filter: grayscale(1) brightness(0.6);
+  transform: scale(1.05);
+  animation: slideFade 15s infinite ease-in-out;
+}
+
+@keyframes slideFade {
+  0%, 15% { opacity: 0; transform: scale(1.05); }
+  20%, 45% { opacity: 1; transform: scale(1); filter: grayscale(0.4) brightness(0.8); }
+  50%, 100% { opacity: 0; transform: scale(1.05); }
+}
+
+.slide:nth-child(1) { animation-delay: 0s; }
+.slide:nth-child(2) { animation-delay: 5s; }
+.slide:nth-child(3) { animation-delay: 10s; }
 
 .portal-view-inner {
   max-width: 1100px;
@@ -3167,37 +3231,144 @@ header#overview + .divider {
   color: #444;
 }
 
-/* --- Subsection UI --- */
-.subsection-grid {
+/* --- Internal Section Template --- */
+.editorial-archive-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-  margin-top: 8rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: 4rem;
+  margin-top: 6rem;
 }
 
-.sub-header {
-  font-size: 0.75rem;
+.editorial-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.editorial-banner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editorial-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%);
+  z-index: 1;
+}
+
+.banner-title {
+  position: relative;
+  z-index: 10;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.03em;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: #999;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 1rem;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-.sub-item {
-  margin-bottom: 3rem;
+.editorial-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.sub-item h4 {
-  font-size: 1.5rem;
+.content-group {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.content-group h4 {
+  font-size: 1.25rem;
   font-weight: 800;
   margin-bottom: 0.75rem;
+  font-family: Inter, sans-serif;
+  letter-spacing: -0.01em;
 }
 
-.sub-item p {
-  color: #666;
-  line-height: 1.6;
+.content-group p {
+  color: #555;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* --- Specific Sports UI Elements --- */
+.telemetry-ui {
+  position: absolute;
+  inset: 0;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(180deg, rgba(200, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.t-label {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #ff3333;
+  letter-spacing: 0.2em;
+}
+
+.t-line-svg {
+  width: 100%;
+  height: 40px;
+  stroke: #ff3333;
+  stroke-width: 1;
+  fill: none;
+  stroke-dasharray: 200;
+  animation: lineFlow 3s linear infinite;
+  opacity: 0.5;
+}
+
+.tactical-ui {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 40px),
+              linear-gradient(180deg, rgba(0, 50, 20, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.tac-node {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 15px rgba(255,255,255,0.5);
+  animation: pulseNode 2s infinite alternate;
+}
+
+.tac-node:nth-child(2) { animation-delay: 0.5s; transform: translateY(-30px); }
+.tac-node:nth-child(3) { animation-delay: 1s; transform: translateY(20px); }
+
+@keyframes pulseNode {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.5); opacity: 1; }
+}
+
+.probability-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+  font-size: 2rem;
+  color: rgba(255,255,255,0.1);
+  letter-spacing: 0.5em;
+  background: radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
 }
 
 /* --- F1 Dashboard UI --- */
