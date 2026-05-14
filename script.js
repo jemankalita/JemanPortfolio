@@ -209,180 +209,186 @@ if (heroWrap) {
   observeSections();
 })();
 
-// ─── Archive Modal System ───────────────────
-const ARCHIVE_DATA = {
-  f1: {
-    title: 'Formula 1: Engineering at the Limit',
+// ─── Cinematic Portal System ────────────────
+const PORTAL_DATA = {
+  sports: {
+    label: '01 / Athletic Excellence',
+    title: 'Sports',
+    intro: 'Systems at the limit. A deep dive into the engineering of Formula 1 and the tactical geometry of modern Football.',
     content: `
-      <div class="modal-grid">
-        <div class="modal-main">
-          <p class="modal-intro">Formula 1 is not just racing; it is a high-stakes engineering war where victory is measured in milliseconds. I am fascinated by the systems that make this possible.</p>
-          <div class="modal-section">
-            <h4>Favorite Drivers</h4>
-            <ul class="modal-list">
-              <li><strong>Lewis Hamilton:</strong> For his relentless consistency and mastery of the hybrid era.</li>
-              <li><strong>Max Verstappen:</strong> For his raw speed and aggressive, uncompromising race craft.</li>
-              <li><strong>Ayrton Senna:</strong> The pure spiritual connection between man and machine.</li>
-            </ul>
+      <div class="subsection-grid">
+        <div class="sub-col">
+          <span class="sub-header">Formula 1</span>
+          <div class="f1-ui">
+            <div class="t-line">STATUS: OPTIMIZED</div>
+            <div class="t-line">DRIVERS: SENNA / HAMILTON / VERSTAPPEN</div>
+            <div class="t-line">CONSTRUCTORS: MERCEDES / MCLAREN</div>
           </div>
-          <div class="modal-section">
-            <h4>Legendary Constructors</h4>
-            <p><strong>Mercedes-AMG Petronas:</strong> A masterclass in organizational excellence and technical dominance.</p>
-            <p><strong>McLaren:</strong> The perfect blend of heritage and modern innovation.</p>
+          <div class="sub-item">
+            <h4>Engineering Obsession</h4>
+            <p>Analyzing aero-elasticity and the limits of material science in the pursuit of a 0.001s edge.</p>
           </div>
         </div>
-        <div class="modal-sidebar">
-          <div class="sidebar-block">
-            <h5>Key Concept</h5>
-            <p>Aero-elasticity: Using material science to find aerodynamic edges within the regulations.</p>
+        <div class="sub-col">
+          <span class="sub-header">Football</span>
+          <div class="sub-item">
+            <h4>Tactical Geometry</h4>
+            <p>Juego de Posición, half-spaces, and the structural occupation of the pitch.</p>
           </div>
-        </div>
-      </div>
-    `
-  },
-  football: {
-    title: 'Football: Tactical Geometry',
-    content: `
-      <div class="modal-grid">
-        <div class="modal-main">
-          <p class="modal-intro">Modern football is a game of space. I follow the tactical evolution of the game, from Sacchi's Milan to Guardiola's City.</p>
-          <div class="modal-section">
-            <h4>Strategic Concepts</h4>
-            <ul class="modal-list">
-              <li><strong>Juego de Posición:</strong> The structured occupation of space to create superiorities.</li>
-              <li><strong>Gegenpressing:</strong> The immediate transition from attack to defense as a playmaker.</li>
-            </ul>
-          </div>
-          <div class="modal-section">
-            <h4>The Arsenal Philosophy</h4>
-            <p>A club built on values, aesthetic football, and a commitment to long-term projects.</p>
+          <div class="sub-item">
+            <h4>Arsenal FC</h4>
+            <p>A club built on values, aesthetic football, and a commitment to evolution.</p>
           </div>
         </div>
       </div>
     `
   },
   poker: {
-    title: 'Poker: Strategic Uncertainty',
+    label: '02 / Analytical Warfare',
+    title: 'Poker',
+    intro: 'The ultimate test of decision-making under uncertainty. Separating the quality of the move from the randomness of the outcome.',
     content: `
-      <div class="modal-grid">
-        <div class="modal-main">
-          <p class="modal-intro">Poker is the ultimate test of decision-making under uncertainty. It’s about separating the quality of the decision from the outcome.</p>
-          <div class="modal-section">
-            <h4>The Mindset</h4>
-            <ul class="modal-list">
-              <li><strong>Expected Value (EV):</strong> Thinking in long-term averages rather than short-term results.</li>
-              <li><strong>GTO vs. Exploitative:</strong> Balancing un-exploitable strategy with the ability to punish opponent weaknesses.</li>
-            </ul>
+      <div class="subsection-grid">
+        <div class="sub-col">
+          <span class="sub-header">Strategy</span>
+          <div class="sub-item">
+            <h4>Expected Value (EV+)</h4>
+            <p>Developing an intuitive sense of long-term probability in high-pressure environments.</p>
           </div>
         </div>
-        <div class="modal-sidebar">
-          <h5>Resources</h5>
-          <p>The Theory of Poker - David Sklansky</p>
-          <p>Modern Poker Theory - Michael Acevedo</p>
+        <div class="sub-col">
+          <span class="sub-header">Psychology</span>
+          <div class="sub-item">
+            <h4>Game Theory Optimal</h4>
+            <p>Balancing unexploitable play with the courage to punish opponent deviations.</p>
+          </div>
         </div>
       </div>
     `
   },
-  films: {
-    title: 'Films: Visual Storytelling',
+  movies: {
+    label: '03 / Visual Storytelling',
+    title: 'Cinema',
+    intro: 'A curated archive of cinematography, pacing, and subtext. My personal Letterboxd ecosystem.',
     content: `
-      <p>Cinematography, pacing, and subtext. A curated look at my Letterboxd favorites.</p>
-      <div class="film-grid-modal">
-        <div class="film-card-m"><span>Inception</span></div>
-        <div class="film-card-m"><span>Blade Runner 2049</span></div>
-        <div class="film-card-m"><span>The Grand Budapest Hotel</span></div>
+      <div class="subsection-grid">
+        <div class="sub-col">
+          <span class="sub-header">Favorite Directors</span>
+          <div class="sub-item"><h4>Christopher Nolan</h4><p>Temporal mechanics and grand-scale systems.</p></div>
+          <div class="sub-item"><h4>Denis Villeneuve</h4><p>Atmospheric world-building and brutalist aesthetics.</p></div>
+        </div>
+        <div class="sub-col">
+          <span class="sub-header">Top 4</span>
+          <div class="sub-item"><p>Inception, Blade Runner 2049, Interstellar, The Prestige.</p></div>
+        </div>
       </div>
-      <a href="https://letterboxd.com/" class="modal-action-btn" target="_blank">Open Letterboxd</a>
     `
   },
-  library: {
+  books: {
+    label: '04 / Intellectual OS',
     title: 'The Library',
+    intro: 'Books that have fundamentally changed how I perceive systems, startups, and human behavior.',
     content: `
-      <p>Books that changed my operating system.</p>
-      <ul class="modal-list">
-        <li><strong>Antifragile:</strong> Things that gain from disorder.</li>
-        <li><strong>Zero to One:</strong> Notes on startups, or how to build the future.</li>
-        <li><strong>Thinking, Fast and Slow:</strong> The dual-system model of the mind.</li>
-      </ul>
-      <a href="https://goodreads.com/" class="modal-action-btn" target="_blank">Open Goodreads</a>
+      <div class="subsection-grid">
+        <div class="sub-col">
+          <span class="sub-header">Core Reading</span>
+          <div class="sub-item"><h4>Antifragile</h4><p>Nassim Taleb on systems that gain from disorder.</p></div>
+          <div class="sub-item"><h4>Zero to One</h4><p>Peter Thiel on the secrets of the future.</p></div>
+        </div>
+        <div class="sub-col">
+          <span class="sub-header">Status</span>
+          <div class="sub-item"><p>Currently Reading: "Thinking in Bets" by Annie Duke.</p></div>
+        </div>
+      </div>
     `
   },
-  research: {
-    title: 'Research Database',
+  knowledge: {
+    label: '05 / Internet Archive',
+    title: 'Stash',
+    intro: 'Deep internet rabbit holes, research papers, and niche topics worth a lifetime of study.',
     content: `
-      <div class="terminal-container-modal">
-        <div class="t-line">> behavioral_economics.pdf [248kb]</div>
-        <div class="t-line">> market_microstructure_analysis.pdf [1.2mb]</div>
-        <div class="t-line">> attention_mechanism_transformer.pdf [3.4mb]</div>
+      <div class="subsection-grid">
+        <div class="sub-col">
+          <span class="sub-header">Active Research</span>
+          <div class="sub-item"><h4>Behavioral Finance</h4><p>Market microstructures and human irrationality.</p></div>
+        </div>
+        <div class="sub-col">
+          <span class="sub-header">Rabbit Holes</span>
+          <div class="sub-item"><p>High-frequency trading networks, AI safety, and the history of cryptography.</p></div>
+        </div>
       </div>
     `
   },
   people: {
-    title: 'Cracked People',
+    label: '06 / Architects of Reality',
+    title: 'Inspiration',
+    intro: 'A curated wall of founders, polymaths, and thinkers who have defined new ways of being.',
     content: `
-      <p>Architects of reality. People who think differently.</p>
-      <div class="people-modal-grid">
-        <div class="person-item-m"><strong>Peter Thiel:</strong> Contrarian thinking and monopoly theory.</div>
-        <div class="person-item-m"><strong>Jim Simons:</strong> The math behind the market.</div>
-        <div class="person-item-m"><strong>Paul Graham:</strong> On startups and doing things that scale.</div>
+      <div class="subsection-grid">
+        <div class="sub-col">
+          <span class="sub-header">Founders</span>
+          <div class="sub-item"><h4>Elon Musk</h4><p>Physics-first thinking at massive scale.</p></div>
+          <div class="sub-item"><h4>Peter Thiel</h4><p>Contrarian philosophy and monopoly building.</p></div>
+        </div>
+        <div class="sub-col">
+          <span class="sub-header">Athletes</span>
+          <div class="sub-item"><h4>Lewis Hamilton</h4><p>Mastery of consistency under extreme pressure.</p></div>
+        </div>
       </div>
-    `
-  },
-  quotes: {
-    title: 'Principles',
-    content: `
-      <blockquote class="modal-quote">"If you want to go fast, go alone. If you want to go far, go together."</blockquote>
-      <blockquote class="modal-quote">"The best way to predict the future is to create it."</blockquote>
-    `
-  },
-  rabbitholes: {
-    title: 'Internet Rabbit Holes',
-    content: `
-      <p>Niche topics that currently have my focus.</p>
-      <ul class="modal-list">
-        <li>The architecture of high-frequency trading networks.</li>
-        <li>AI Alignment and Safety protocols.</li>
-        <li>The evolution of digital currencies and sovereign states.</li>
-      </ul>
     `
   }
 };
 
-const modal = document.getElementById('archive-modal');
-const modalContent = modal?.querySelector('.modal-content-area');
-const modalClose = modal?.querySelector('.modal-close');
-const modalBackdrop = modal?.querySelector('.modal-backdrop');
+const portalModal = document.getElementById('archive-modal');
+const portalContentArea = portalModal?.querySelector('.modal-content-area');
+const portalCloseBtn = portalModal?.querySelector('.modal-close');
+const portalBackdropArea = portalModal?.querySelector('.modal-backdrop');
 
-function openArchiveModal(id) {
-  const data = ARCHIVE_DATA[id];
-  if (!data || !modal || !modalContent) return;
+function openPortalView(id) {
+  const data = PORTAL_DATA[id];
+  if (!data || !portalModal || !portalContentArea) return;
 
-  modalContent.innerHTML = `
-    <h2 class="modal-content-title">${data.title}</h2>
-    <div class="modal-inner-content">${data.content}</div>
+  portalContentArea.innerHTML = `
+    <div class="portal-view-inner">
+      <div class="view-header">
+        <span class="view-label" data-reveal>${data.label}</span>
+        <h2 class="view-title" data-reveal>${data.title}</h2>
+        <p class="view-intro" data-reveal>${data.intro}</p>
+      </div>
+      <div class="view-body" data-reveal>
+        ${data.content}
+      </div>
+    </div>
   `;
   
-  modal.classList.add('active');
+  portalModal.classList.add('active');
   document.body.style.overflow = 'hidden';
+  
+  // Re-trigger reveal observer for internal content
+  setTimeout(() => {
+    portalContentArea.querySelectorAll('[data-reveal]').forEach(el => {
+      el.classList.add('is-visible');
+    });
+  }, 100);
 }
 
-function closeArchiveModal() {
-  if (!modal) return;
-  modal.classList.remove('active');
+function closePortalView() {
+  if (!portalModal) return;
+  portalModal.classList.remove('active');
   document.body.style.overflow = '';
 }
 
-if (modalClose) modalClose.addEventListener('click', closeArchiveModal);
-if (modalBackdrop) modalBackdrop.addEventListener('click', closeArchiveModal);
+if (portalCloseBtn) portalCloseBtn.addEventListener('click', closePortalView);
+if (portalBackdropArea) portalBackdropArea.addEventListener('click', closePortalView);
 
-document.querySelectorAll('.archive-card').forEach(card => {
+document.querySelectorAll('.portal-card').forEach(card => {
   card.addEventListener('click', () => {
-    const archiveId = card.dataset.archive;
-    if (archiveId) openArchiveModal(archiveId);
+    const portalId = card.dataset.portal;
+    if (portalId) openPortalView(portalId);
   });
 });
 
-// ─── SMART INFO-CARD FLIP (Above ↔ Below) ───────────────────
+// ─── Smart info-card flip (Above ↔ Below) ───────────────────
 (function initInfoCardFlip() {
   const CARD_ESTIMATED_HEIGHT = 160; 
   const V_MARGIN = 12;  
@@ -423,6 +429,7 @@ document.querySelectorAll('.archive-card').forEach(card => {
     token.addEventListener('focusout',   () => resetCard(token));
   });
 })();
+
 
 
 
