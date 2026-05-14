@@ -2742,3 +2742,196 @@ a:focus-visible, button:focus-visible {
   opacity: 0.55;
   margin-left: 0.4em;
 }
+
+/* --- Compact overview hero layout --- */
+#page-home header {
+  padding: clamp(1.6rem, 4vh, 2.8rem) 0 clamp(1rem, 2.5vh, 1.8rem);
+}
+
+#page-home .hero-inner {
+  display: block;
+  min-height: 0;
+  padding: 0 2rem;
+}
+
+#page-home .hero-text {
+  max-width: 100%;
+}
+
+#page-home .hero-name {
+  margin-bottom: 0.8rem;
+}
+
+#page-home .hero-philosophy {
+  max-width: 36rem;
+}
+
+#page-home > .divider {
+  opacity: 0.75;
+}
+
+#overview {
+  padding: clamp(1.8rem, 4vh, 3rem) 0 clamp(2.4rem, 5vh, 4rem);
+}
+
+#overview .section-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(230px, 27vw, 330px);
+  grid-template-rows: auto 1fr;
+  column-gap: clamp(2.5rem, 6vw, 5rem);
+  row-gap: 0.8rem;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+#overview .section-label {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+  padding-top: 0;
+  align-self: end;
+}
+
+#overview .section-content {
+  grid-column: 1;
+  grid-row: 2;
+  max-width: 620px;
+  align-self: start;
+}
+
+#overview .body-text {
+  max-width: 100%;
+  font-size: clamp(0.96rem, 1.18vw, 1.08rem);
+  line-height: 1.74;
+}
+
+#overview .body-text + .body-text {
+  margin-top: 1rem;
+}
+
+#overview .hero-image-wrap {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  width: 100%;
+  max-width: none;
+  align-self: center;
+  justify-self: end;
+  order: initial;
+}
+
+#overview .hero-portrait {
+  width: 100%;
+  height: min(44vh, 430px);
+  min-height: 320px;
+  max-height: 430px;
+  object-fit: cover;
+  object-position: top center;
+}
+
+#education {
+  padding-top: clamp(2rem, 4vh, 3rem);
+}
+
+@media (max-width: 980px) {
+  #page-home header {
+    padding-top: 1.75rem;
+  }
+
+  #overview .section-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(210px, 30vw);
+    column-gap: 2rem;
+  }
+}
+
+@media (max-width: 760px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .nav-inner {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .nav-links {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  #page-home header {
+    padding: 1.75rem 0 1.25rem;
+  }
+
+  #page-home .hero-inner {
+    padding: 0 1.25rem;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  #page-home .hero-text {
+    align-items: center;
+  }
+
+  #page-home .hero-name {
+    max-width: 100%;
+    font-size: clamp(2rem, 10vw, 2.35rem);
+    line-height: 0.9;
+    letter-spacing: -0.035em;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  #page-home .hero-philosophy {
+    max-width: min(100%, 22rem);
+    margin: 0 auto;
+    font-size: 0.84rem;
+    line-height: 1.55;
+  }
+
+  #overview {
+    padding: 1.75rem 0 2.4rem;
+  }
+
+  #overview .section-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 1.25rem;
+    align-items: center;
+  }
+
+  #overview .section-label,
+  #overview .section-content {
+    width: 100%;
+    max-width: 38rem;
+    align-self: center;
+  }
+
+  #overview .body-text {
+    overflow-wrap: break-word;
+  }
+
+  #overview .hero-image-wrap {
+    width: min(230px, 60vw);
+    align-self: center;
+    order: -1;
+  }
+
+  #overview .hero-portrait {
+    height: auto;
+    min-height: 0;
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 400px) {
+  #page-home .hero-name {
+    font-size: clamp(1.95rem, 9.5vw, 2.25rem);
+  }
+
+  #overview .hero-image-wrap {
+    width: min(180px, 54vw);
+  }
+}
