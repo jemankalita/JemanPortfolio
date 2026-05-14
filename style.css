@@ -2745,20 +2745,24 @@ a:focus-visible, button:focus-visible {
 
 /* --- Compact overview hero layout --- */
 #page-home header {
-  padding: clamp(1.6rem, 4vh, 2.8rem) 0 clamp(1rem, 2.5vh, 1.8rem);
+  padding: clamp(1.6rem, 4vh, 2.8rem) 0 0;
 }
 
 #page-home .hero-inner {
   display: block;
   min-height: 0;
-  padding: 0 2rem;
+  padding: 0 2rem clamp(1rem, 2vh, 1.6rem);
 }
 
 #page-home .hero-text {
-  max-width: 100%;
+  max-width: min(100%, 720px);
 }
 
 #page-home .hero-name {
+  font-size: clamp(4rem, 6.8vw, 6.8rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  white-space: normal;
   margin-bottom: 0.8rem;
 }
 
@@ -2767,20 +2771,20 @@ a:focus-visible, button:focus-visible {
 }
 
 #page-home > .divider {
-  opacity: 0.75;
+  display: none;
 }
 
 #overview {
-  padding: clamp(1.8rem, 4vh, 3rem) 0 clamp(2.4rem, 5vh, 4rem);
+  padding: clamp(1rem, 2vh, 1.6rem) 0 clamp(2.2rem, 5vh, 3.6rem);
 }
 
 #overview .section-inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(230px, 27vw, 330px);
+  grid-template-columns: minmax(0, 720px) clamp(260px, 25vw, 360px);
   grid-template-rows: auto 1fr;
-  column-gap: clamp(2.5rem, 6vw, 5rem);
+  column-gap: clamp(3rem, 7vw, 6rem);
   row-gap: 0.8rem;
-  align-items: center;
+  align-items: start;
   padding: 0 2rem;
 }
 
@@ -2795,7 +2799,7 @@ a:focus-visible, button:focus-visible {
 #overview .section-content {
   grid-column: 1;
   grid-row: 2;
-  max-width: 620px;
+  max-width: 680px;
   align-self: start;
 }
 
@@ -2814,18 +2818,22 @@ a:focus-visible, button:focus-visible {
   grid-row: 1 / span 2;
   width: 100%;
   max-width: none;
-  align-self: center;
+  align-self: start;
   justify-self: end;
   order: initial;
+  margin-top: clamp(-10.5rem, -14vw, -7rem);
+  overflow: visible;
+  padding: 0;
 }
 
 #overview .hero-portrait {
+  display: block;
   width: 100%;
-  height: min(44vh, 430px);
-  min-height: 320px;
-  max-height: 430px;
-  object-fit: cover;
-  object-position: top center;
+  height: auto;
+  max-height: min(58vh, 540px);
+  object-fit: contain;
+  object-position: center top;
+  border-radius: var(--radius-xl);
 }
 
 #education {
@@ -2838,8 +2846,16 @@ a:focus-visible, button:focus-visible {
   }
 
   #overview .section-inner {
-    grid-template-columns: minmax(0, 1fr) minmax(210px, 30vw);
-    column-gap: 2rem;
+    grid-template-columns: minmax(0, 1fr) minmax(230px, 30vw);
+    column-gap: clamp(2rem, 4vw, 3rem);
+  }
+
+  #page-home .hero-name {
+    font-size: clamp(3.4rem, 7.4vw, 5.5rem);
+  }
+
+  #overview .hero-image-wrap {
+    margin-top: clamp(-8rem, -13vw, -5rem);
   }
 }
 
@@ -2890,6 +2906,11 @@ a:focus-visible, button:focus-visible {
     line-height: 1.55;
   }
 
+  #page-home > .divider {
+    display: block;
+    opacity: 0.75;
+  }
+
   #overview {
     padding: 1.75rem 0 2.4rem;
   }
@@ -2917,12 +2938,15 @@ a:focus-visible, button:focus-visible {
     width: min(230px, 60vw);
     align-self: center;
     order: -1;
+    margin-top: 0;
   }
 
   #overview .hero-portrait {
     height: auto;
     min-height: 0;
     max-height: 300px;
+    object-fit: cover;
+    object-position: top center;
   }
 }
 
