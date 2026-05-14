@@ -482,6 +482,115 @@ document.querySelectorAll('.portal-card').forEach(card => {
   });
 })();
 
+// ─── Dynamic Media Cover System ─────────────────────────
+const DYNAMIC_MEDIA = {
+  sports: [
+    'interests/Sports/d04e6cb8f2aa1c2f13fe4d7085ea8c23.mp4'
+  ],
+  poker: [
+    'interests/Poker/download (1).jpg',
+    'interests/Poker/download (2).jpg',
+    'interests/Poker/download.jpg',
+    'interests/Poker/glowing lights casino chips and cards s Poker cards floating, gambling and casino concept , banner copy space  ,AI_ Stock Photo _ Adobe Stock.jpg'
+  ],
+  movies: [
+    'interests/movies/Movie Shooting Silhouette Film Festival Poster Background, Film Festival, Tv Series, Film Background Image And Wallpaper for Free Download.jpg',
+    'interests/movies/One of my favorite directors!.jpg',
+    'interests/movies/download (3).jpg',
+    'interests/movies/download.jpg'
+  ],
+  books: [
+    'interests/books/Free  Books, Retro, Library Background Images, Books Background Photo Background PNG and Vectors.jpg',
+    'interests/books/download (1).jpg',
+    'interests/books/download.jpg'
+  ],
+  knowledge: [
+    'interests/knowledge stash/basically inside portia\'s head lmao.gif',
+    'interests/knowledge stash/download (1).gif',
+    'interests/knowledge stash/download.gif'
+  ],
+  people: [
+    'interests/inspiration/Dario-Amodei-copy.png',
+    'interests/inspiration/Elon-Musk.png',
+    'interests/inspiration/GettyImages-1258459705-e1700340943429.png',
+    'interests/inspiration/Jensen-Huang-copy.png',
+    'interests/inspiration/Mark-Zuckerberg.png',
+    'interests/inspiration/Sam-Altman.png',
+    'interests/inspiration/What Peter Thiel Saw in Jeffrey Epstein.jpg',
+    'interests/inspiration/meta-scale-ai-news-inc.png'
+  ]
+};
+
+function initDynamicMedia() {
+  const containers = document.querySelectorAll('.dynamic-media-container');
+  containers.forEach(container => {
+    const section = container.dataset.portalMedia;
+    const files = DYNAMIC_MEDIA[section];
+    if (!files || files.length === 0) return;
+
+    // Create DOM elements dynamically based on file type
+    files.forEach((file) => {
+      let el;
+      if (file.endsWith('.mp4') || file.endsWith('.webm')) {
+        el = document.createElement('video');
+        el.src = file;
+        el.autoplay = true;
+        el.muted = true;
+        el.loop = true;
+        el.playsInline = true;
+        el.className = 'media-layer video-layer';
+      } else {
+        el = document.createElement('img');
+        el.src = file;
+        el.className = 'media-layer ' + (file.endsWith('.gif') ? 'gif-layer' : 'image-layer');
+      }
+      container.appendChild(el);
+    });
+
+    const layers = container.querySelectorAll('.media-layer');
+    if (layers.length === 0) return;
+
+    // Start playback & cycling logic
+    let currentIndex = 0;
+    layers[0].classList.add('active');
+
+    if (layers.length > 1) {
+      function showNextLayer() {
+        const prevIndex = currentIndex;
+        currentIndex = (currentIndex + 1) % layers.length;
+        
+        layers[prevIndex].classList.remove('active');
+        layers[currentIndex].classList.add('active');
+        
+        scheduleNext();
+      }
+
+      function scheduleNext() {
+        const currentLayer = layers[currentIndex];
+        let delay = 1000; // 1 second fast cuts for images
+        
+        if (currentLayer.classList.contains('gif-layer')) {
+          delay = 6000; // Allow GIF to loop naturally
+        } else if (currentLayer.classList.contains('video-layer')) {
+          delay = 8000; // Give video breathing room
+        } else if (section === 'people') {
+          delay = 3000; // Slower cinematic pacing for inspiration
+        }
+        
+        setTimeout(showNextLayer, delay);
+      }
+      
+      // Kickoff the cycle
+      setTimeout(() => {
+        scheduleNext();
+      }, 100);
+    }
+  });
+}
+
+// Initialize on DOM load
+initDynamicMedia();
+
 
 
 
