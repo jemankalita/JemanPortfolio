@@ -2936,3 +2936,316 @@ header#overview + .divider {
     width: min(180px, 54vw);
   }
 }
+
+/* ═══════════════════════════════════════════
+   INTERESTS BENTO — DIGITAL ARCHIVE
+   ═══════════════════════════════════════════ */
+
+.interests-bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(180px, auto);
+  gap: 1.25rem;
+  margin-top: 3rem;
+  padding-bottom: 4rem;
+}
+
+.bento-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid #e0e0db;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+  overflow: hidden;
+}
+
+.bento-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+  border-color: #050505;
+  z-index: 10;
+}
+
+.bento-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+.card-label {
+  font-family: Inter, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #999995;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.card-title {
+  font-family: Inter, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #050505;
+  margin-bottom: 1.25rem;
+}
+
+/* --- Layout spans --- */
+.bento-f1 { grid-column: span 2; grid-row: span 2; min-height: 400px; }
+.bento-football { grid-column: span 2; }
+.bento-poker { grid-column: span 1; grid-row: span 2; }
+.bento-books { grid-column: span 1; }
+.bento-films { grid-column: span 3; }
+.bento-research { grid-column: span 2; grid-row: span 2; }
+.bento-people { grid-column: span 2; }
+.bento-media { grid-column: span 2; }
+.bento-quotes { grid-column: span 4; padding: 4rem 2rem; }
+
+/* --- Formula 1 Dashboard --- */
+.bento-f1 {
+  background: #0a0a0a;
+  color: #fff;
+  border-color: #222;
+}
+.bento-f1 .card-title { color: #fff; }
+.f1-telemetry {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.telemetry-line {
+  height: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+}
+.telemetry-line::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -1px;
+  width: 30%;
+  height: 2px;
+  background: #fff;
+  animation: telemetryMove 3s infinite linear;
+}
+@keyframes telemetryMove {
+  0% { left: -30%; }
+  100% { left: 100%; }
+}
+.f1-details {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  opacity: 0.7;
+}
+
+/* --- Football Tactical Board --- */
+.bento-football {
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.football-tactics {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.tactic-tag {
+  font-size: 0.7rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #050505;
+  font-weight: 600;
+}
+
+/* --- Poker / Game Theory --- */
+.bento-poker {
+  background: #050505;
+  color: #fff;
+}
+.bento-poker .card-title { color: #fff; }
+.poker-nodes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.node-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: monospace;
+  font-size: 0.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 0.4rem 0;
+}
+
+/* --- Films Archive --- */
+.film-rail {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 1rem;
+  margin: 0.5rem -1.75rem;
+  padding: 0 1.75rem;
+}
+.film-rail::-webkit-scrollbar { display: none; }
+.film-item {
+  flex: 0 0 140px;
+  aspect-ratio: 2/3;
+  background: #eee;
+  transition: transform 0.4s ease;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+.film-item:hover { transform: scale(1.05); }
+
+/* --- Terminal / Research --- */
+.bento-research {
+  background: #0f0f0f;
+  color: #00ff00;
+  font-family: monospace;
+  border-color: #333;
+}
+.bento-research .card-title, .bento-research .card-label { color: #00ff00; opacity: 0.8; }
+.terminal-content {
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+.terminal-line::before { content: "> "; }
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: #00ff00;
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* --- Cracked People --- */
+.people-archive {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+.person-dot {
+  width: 100%;
+  aspect-ratio: 1;
+  background: #050505;
+  filter: grayscale(1);
+  transition: filter 0.3s ease, transform 0.3s ease;
+  background-size: cover;
+  background-position: center;
+}
+.person-dot:hover {
+  filter: grayscale(0);
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+/* --- Books Stack --- */
+.books-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.book-spine {
+  padding: 0.4rem 0.75rem;
+  border-left: 3px solid #050505;
+  background: #f0f0ed;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* --- Media / VHS --- */
+.bento-media {
+  position: relative;
+}
+.vhs-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+/* --- Quotes Wall --- */
+.quotes-container {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.big-quote {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin-bottom: 2rem;
+}
+.quote-sig {
+  font-family: monospace;
+  font-size: 0.9rem;
+  opacity: 0.5;
+}
+
+/* --- Motion & Reveal --- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Dynamic Background --- */
+.cursor-bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0,0,0,0.03), transparent 40%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 1024px) {
+  .interests-bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bento-quotes { grid-column: span 2; }
+}
+
+@media (max-width: 680px) {
+  .interests-bento {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .bento-card {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+    min-height: unset !important;
+    padding: 1.5rem;
+  }
+  .big-quote {
+    font-size: 1.75rem;
+  }
+  .film-rail {
+    margin: 0.5rem -1.5rem;
+    padding: 0 1.75rem;
+  }
+}

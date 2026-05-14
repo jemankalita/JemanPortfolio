@@ -2,6 +2,14 @@
    JEMAN KALITA — script.js
    ═══════════════════════════════════════════ */
 
+// ─── Cursor-reactive Dotted Background ──────
+document.addEventListener('mousemove', (e) => {
+  const x = e.clientX;
+  const y = e.clientY;
+  document.body.style.setProperty('--mouse-x', `${x}px`);
+  document.body.style.setProperty('--mouse-y', `${y}px`);
+});
+
 // ─── Nav scroll shadow & scroll progress & back-to-top ─
 const nav = document.getElementById('main-nav');
 const scrollProgress = document.getElementById('scroll-progress');
@@ -59,7 +67,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
 function observeSections() {
-  document.querySelectorAll('.section-inner').forEach(el => {
+  document.querySelectorAll('.section-inner, [data-reveal]').forEach(el => {
     el.classList.remove('is-visible');
     revealObserver.observe(el);
   });

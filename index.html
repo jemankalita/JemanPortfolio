@@ -25,6 +25,7 @@
 </head>
 
 <body>
+  <div class="cursor-bg"></div>
   <div id="scroll-progress"></div>
 
   <nav id="main-nav">
@@ -281,10 +282,127 @@
 
     <section>
       <div class="section-inner">
-        <span class="section-label">Areas</span>
+        <span class="section-label">Archive</span>
         <div class="section-content">
-          <p class="coming-soon-large">Coming soon.</p>
-          <p class="coming-soon-sub">A longer look at the things I find myself thinking about most.</p>
+          <div class="interests-bento">
+            
+            <!-- 01 Formula 1 -->
+            <div class="bento-card bento-f1" data-reveal>
+              <div class="card-header">
+                <span class="card-label">01 / Racing</span>
+                <h3 class="card-title">Formula 1</h3>
+              </div>
+              <div class="f1-telemetry">
+                <div class="telemetry-line"></div>
+                <div class="telemetry-line" style="width: 70%; opacity: 0.5;"></div>
+                <div class="telemetry-line" style="width: 85%;"></div>
+              </div>
+              <div class="f1-details">
+                <p>Systems at the limit. Obsessed with the engineering perfection of Mercedes-AMG, the legacy of McLaren, and the raw tactical pressure of a 2-second pit window.</p>
+              </div>
+            </div>
+
+            <!-- 02 Football -->
+            <div class="bento-card bento-football" data-reveal>
+              <div class="card-header">
+                <span class="card-label">02 / Strategy</span>
+                <h3 class="card-title">Football</h3>
+              </div>
+              <p class="body-text" style="font-size: 0.85rem; margin-bottom: 1rem;">Space, patterns, and positional play. Analyzing the geometry of the pitch.</p>
+              <div class="football-tactics">
+                <span class="tactic-tag">Juego de Posición</span>
+                <span class="tactic-tag">Half-Spaces</span>
+              </div>
+            </div>
+
+            <!-- 03 Poker -->
+            <div class="bento-card bento-poker" data-reveal>
+              <div class="card-header">
+                <span class="card-label">03 / Analytics</span>
+                <h3 class="card-title">Game Theory</h3>
+              </div>
+              <div class="poker-nodes">
+                <div class="node-row"><span>Expected Value</span><span>EV+</span></div>
+                <div class="node-row"><span>Range Analysis</span><span>72%</span></div>
+                <div class="node-row"><span>GTO Solver</span><span>ACTIVE</span></div>
+              </div>
+            </div>
+
+            <!-- 04 Films -->
+            <div class="bento-card bento-films" data-reveal>
+              <div class="card-header">
+                <span class="card-label">04 / Cinema</span>
+                <h3 class="card-title">Film Archive</h3>
+              </div>
+              <div class="film-rail">
+                <div class="film-item" style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=300&auto=format&fit=crop');"></div>
+                <div class="film-item" style="background-image: url('https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=300&auto=format&fit=crop');"></div>
+                <div class="film-item" style="background-image: url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=300&auto=format&fit=crop');"></div>
+                <div class="film-item" style="background-image: url('https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=300&auto=format&fit=crop');"></div>
+              </div>
+            </div>
+
+            <!-- 05 Books -->
+            <div class="bento-card bento-books" data-reveal>
+              <div class="card-header">
+                <span class="card-label">05 / Reading</span>
+                <h3 class="card-title">Library</h3>
+              </div>
+              <div class="books-stack">
+                <div class="book-spine">The Black Swan</div>
+                <div class="book-spine">Zero to One</div>
+                <div class="book-spine" style="background: #050505; color: #fff;">Antifragile</div>
+              </div>
+            </div>
+
+            <!-- 06 Research -->
+            <div class="bento-card bento-research" data-reveal>
+              <div class="card-header">
+                <span class="card-label">06 / Database</span>
+                <h3 class="card-title">Research Papers</h3>
+              </div>
+              <div class="terminal-content">
+                <div class="terminal-line">Behavioral Finance</div>
+                <div class="terminal-line">Market Microstructure</div>
+                <div class="terminal-line">Deep Learning / LLMs</div>
+                <div class="terminal-cursor"></div>
+              </div>
+            </div>
+
+            <!-- 07 People -->
+            <div class="bento-card bento-people" data-reveal>
+              <div class="card-header">
+                <span class="card-label">07 / Network</span>
+                <h3 class="card-title">Cracked People</h3>
+              </div>
+              <div class="people-archive">
+                <div class="person-dot" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/4d/Peter_Thiel.jpg');"></div>
+                <div class="person-dot" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg/220px-Elon_Musk_Royal_Society_%28crop1%29.jpg');"></div>
+                <div class="person-dot" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Jim_Simons_7.jpg/220px-Jim_Simons_7.jpg');"></div>
+                <div class="person-dot" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Paul_Graham_at_the_2007_Startup_School.jpg/220px-Paul_Graham_at_the_2007_Startup_School.jpg');"></div>
+              </div>
+            </div>
+
+            <!-- 08 Media -->
+            <div class="bento-card bento-media" data-reveal>
+              <div class="vhs-overlay"></div>
+              <div class="card-header">
+                <span class="card-label">08 / Media</span>
+                <h3 class="card-title">Rabbit Holes</h3>
+              </div>
+              <p style="font-size: 0.75rem; opacity: 0.6; font-family: monospace;">[ ARCHIVE_LOADED ]</p>
+              <p style="font-size: 0.85rem; margin-top: 0.5rem;">Curated YouTube channels and niche internet topics that pull focus.</p>
+            </div>
+
+            <!-- 09 Quotes -->
+            <div class="bento-card bento-quotes" data-reveal>
+              <div class="quotes-container">
+                <p class="big-quote">"The best way to predict the future is to create it."</p>
+                <p class="quote-sig">// PETER DRUCKER</p>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </section>
