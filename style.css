@@ -2959,7 +2959,6 @@ header#overview + .divider {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2.5rem;
-  margin-top: 3rem;
   padding-bottom: 6rem;
   width: 100%;
 }
@@ -2968,7 +2967,6 @@ header#overview + .divider {
   position: relative;
   aspect-ratio: 16/10;
   background: #000;
-  cursor: pointer;
   overflow: hidden;
   border-radius: 16px;
   border: 1px solid #e0e0db;
