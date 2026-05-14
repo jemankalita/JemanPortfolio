@@ -2755,22 +2755,22 @@ header#overview {
 
 header#overview .hero-inner {
   display: grid;
-  grid-template-columns: minmax(0, 720px) clamp(260px, 25vw, 360px);
-  column-gap: clamp(3rem, 7vw, 6rem);
+  grid-template-columns: minmax(0, 1fr) clamp(300px, 25vw, 360px);
+  column-gap: clamp(3.5rem, 8vw, 7rem);
   align-items: start;
   min-height: 0;
   padding: 0 2rem;
 }
 
 header#overview .hero-text {
-  max-width: min(100%, 720px);
+  max-width: min(100%, 860px);
 }
 
 header#overview .hero-name {
-  font-size: clamp(4rem, 6.8vw, 6.8rem);
+  font-size: clamp(4rem, 5.9vw, 6.35rem);
   line-height: 0.9;
   letter-spacing: -0.05em;
-  white-space: normal;
+  white-space: nowrap;
   margin-bottom: 0.8rem;
 }
 
@@ -2799,19 +2799,20 @@ header#overview .hero-image-wrap {
   align-self: start;
   justify-self: end;
   order: initial;
-  overflow: visible;
+  overflow: hidden;
   padding: 0;
   margin-top: 0.2rem;
+  border-radius: var(--radius-xl);
 }
 
 header#overview .hero-portrait {
   display: block;
   width: 100%;
   height: auto;
-  max-height: min(58vh, 540px);
-  object-fit: contain;
+  max-height: none;
+  object-fit: cover;
   object-position: center top;
-  border-radius: var(--radius-xl);
+  border-radius: 0;
 }
 
 header#overview + .divider {
@@ -2828,12 +2829,12 @@ header#overview + .divider {
   }
 
   header#overview .hero-inner {
-    grid-template-columns: minmax(0, 1fr) minmax(230px, 30vw);
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 30vw);
     column-gap: clamp(2rem, 4vw, 3rem);
   }
 
   header#overview .hero-name {
-    font-size: clamp(3.4rem, 7.4vw, 5.5rem);
+    font-size: clamp(3.2rem, 6vw, 4.75rem);
   }
 }
 
