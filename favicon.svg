@@ -1,4 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect x="2" y="2" width="96" height="96" rx="24" fill="#08090b" />
-  <text x="48" y="54" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="44" font-weight="900" fill="#ffffff" text-anchor="middle" dominant-baseline="central" letter-spacing="-2">JK</text>
+  <rect x="0" y="0" width="100" height="100" rx="24" fill="#050505" />
+  <g stroke="#ffffff" stroke-width="13" fill="none" stroke-linecap="butt" stroke-linejoin="miter">
+    <!-- J -->
+    <path d="M 39 30 L 39 58 A 12 12 0 0 1 27 70 L 23 70" />
+    <!-- K -->
+    <path d="M 55 30 L 55 70" />
+    <path d="M 77 30 L 55 51" />
+    <path d="M 61 46 L 77 70" />
+  </g>
 </svg>

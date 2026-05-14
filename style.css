@@ -1179,7 +1179,7 @@ header {
 }
 
 section {
-  padding: 52px 0;
+  padding: 24px 0;
 }
 
 .section-inner {
@@ -1266,7 +1266,7 @@ section:hover .section-inner {
 }
 
 .page-header {
-  padding: 40px 0 46px;
+  padding: 40px 0 20px;
 }
 
 .page-title {
@@ -2837,9 +2837,74 @@ header#overview + .divider {
   padding-top: clamp(2rem, 4vh, 3rem);
 }
 
-.edu-timeline {
-  list-style: none;
-  padding: 0;
+.edu-stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.edu-stat-card {
+  flex: 1;
+  min-width: 200px;
+  padding: 1.5rem;
+  background: var(--bg-soft, rgba(255, 255, 255, 0.4));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg, 22px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.edu-stat-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.edu-stat-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: var(--text);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.stat-label {
+  font-family: Inter, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+
+.stat-value {
+  font-family: Inter, sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.stat-subtext {
+  font-family: Inter, sans-serif;
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+@media (max-width: 680px) {
+  .edu-stats-grid {
+    flex-direction: column;
+  }
+  .edu-stat-card {
+    min-width: 100%;
+  }
 }
 
 @media (max-width: 980px) {
@@ -3000,7 +3065,7 @@ header#overview + .divider {
 .portal-centered-container {
   max-width: 1060px;
   margin: 0 auto;
-  padding: 2rem 2rem 8rem 2rem;
+  padding: 0.5rem 2rem 8rem 2rem;
 }
 
 .portal-card:hover .card-media img {

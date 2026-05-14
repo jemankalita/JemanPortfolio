@@ -259,7 +259,6 @@ const DYNAMIC_MEDIA = {
   ],
   poker: [
     'interests/Poker/download (1).jpg',
-    'interests/Poker/download (2).jpg',
     'interests/Poker/download.jpg',
     'interests/Poker/glowing lights casino chips and cards s Poker cards floating, gambling and casino concept , banner copy space  ,AI_ Stock Photo _ Adobe Stock.jpg'
   ],
