@@ -2820,7 +2820,7 @@ header#overview .hero-portrait {
   object-fit: cover;
   object-position: center top;
   border-radius: 0;
-  filter: grayscale(1) contrast(1.04);
+  filter: contrast(1.04);
 }
 
 header#overview + .divider {
@@ -2829,6 +2829,11 @@ header#overview + .divider {
 
 #education {
   padding-top: clamp(2rem, 4vh, 3rem);
+}
+
+.edu-timeline {
+  list-style: none;
+  padding: 0;
 }
 
 @media (max-width: 980px) {
