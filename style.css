@@ -2970,6 +2970,7 @@ header#overview + .divider {
   background: #000;
   cursor: pointer;
   overflow: hidden;
+  border-radius: 16px;
   border: 1px solid #e0e0db;
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
               border-color 0.4s ease,
@@ -2998,6 +2999,12 @@ header#overview + .divider {
               filter 0.8s ease;
 }
 
+.portal-centered-container {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 2rem 2rem 8rem 2rem;
+}
+
 .portal-card:hover .card-media img {
   transform: scale(1.1);
   filter: grayscale(0.4) brightness(0.8);
@@ -3006,33 +3013,37 @@ header#overview + .divider {
 .media-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.8) 100%);
-  opacity: 0.8;
+  background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.85) 100%);
+  opacity: 0.9;
 }
 
 .card-content {
   position: absolute;
   bottom: 0;
   left: 0;
-  padding: 3rem;
+  width: 100%;
+  padding: clamp(1.5rem, 5vw, 3rem);
   color: #fff;
   z-index: 5;
+  box-sizing: border-box;
 }
 
 .card-num {
   font-family: monospace;
   font-size: 0.75rem;
-  opacity: 0.5;
+  opacity: 0.6;
   display: block;
   margin-bottom: 0.5rem;
 }
 
 .card-title {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 6vw, 2.75rem);
   font-weight: 900;
+  line-height: 1.05;
   margin-bottom: 0.5rem;
   letter-spacing: -0.04em;
   color: #fff;
+  word-wrap: break-word;
 }
 
 .card-kicker {
@@ -3183,7 +3194,7 @@ header#overview + .divider {
   object-fit: cover;
   opacity: 0;
   transform: scale(1.05);
-  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 8s ease-out;
+  transition: opacity 2.5s cubic-bezier(0.25, 1, 0.5, 1), transform 12s ease-out;
   pointer-events: none;
   filter: grayscale(0.5) brightness(0.6);
   will-change: opacity, transform;

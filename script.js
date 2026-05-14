@@ -567,14 +567,14 @@ function initDynamicMedia() {
 
       function scheduleNext() {
         const currentLayer = layers[currentIndex];
-        let delay = 1000; // 1 second fast cuts for images
+        let delay = 2000; // 2 seconds for smooth deliberate pacing
         
         if (currentLayer.classList.contains('gif-layer')) {
           delay = 6000; // Allow GIF to loop naturally
         } else if (currentLayer.classList.contains('video-layer')) {
           delay = 8000; // Give video breathing room
         } else if (section === 'people') {
-          delay = 3000; // Slower cinematic pacing for inspiration
+          delay = 4000; // Slower cinematic pacing for inspiration
         }
         
         setTimeout(showNextLayer, delay);
