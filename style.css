@@ -2749,21 +2749,24 @@ a:focus-visible, button:focus-visible {
 }
 
 /* --- Compact overview hero layout --- */
-#page-home header {
-  padding: clamp(1.6rem, 4vh, 2.8rem) 0 0;
+header#overview {
+  padding: clamp(1.6rem, 4vh, 2.8rem) 0 clamp(2.2rem, 5vh, 3.6rem);
 }
 
-#page-home .hero-inner {
-  display: block;
+header#overview .hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 720px) clamp(260px, 25vw, 360px);
+  column-gap: clamp(3rem, 7vw, 6rem);
+  align-items: start;
   min-height: 0;
-  padding: 0 2rem clamp(1rem, 2vh, 1.6rem);
+  padding: 0 2rem;
 }
 
-#page-home .hero-text {
+header#overview .hero-text {
   max-width: min(100%, 720px);
 }
 
-#page-home .hero-name {
+header#overview .hero-name {
   font-size: clamp(4rem, 6.8vw, 6.8rem);
   line-height: 0.9;
   letter-spacing: -0.05em;
@@ -2771,67 +2774,37 @@ a:focus-visible, button:focus-visible {
   margin-bottom: 0.8rem;
 }
 
-#page-home .hero-philosophy {
+header#overview .hero-philosophy {
   max-width: 36rem;
+  margin-bottom: clamp(0.9rem, 2vh, 1.35rem);
 }
 
-#page-home > .divider {
-  display: none;
+header#overview .about-text-container {
+  margin-top: 0;
 }
 
-#overview {
-  padding: clamp(1rem, 2vh, 1.6rem) 0 clamp(2.2rem, 5vh, 3.6rem);
-}
-
-#overview .section-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 720px) clamp(260px, 25vw, 360px);
-  grid-template-rows: auto 1fr;
-  column-gap: clamp(3rem, 7vw, 6rem);
-  row-gap: 0.8rem;
-  align-items: start;
-  padding: 0 2rem;
-}
-
-#overview .section-label {
-  grid-column: 1;
-  grid-row: 1;
-  min-width: 0;
-  padding-top: 0;
-  align-self: end;
-}
-
-#overview .section-content {
-  grid-column: 1;
-  grid-row: 2;
-  max-width: 680px;
-  align-self: start;
-}
-
-#overview .body-text {
+header#overview .body-text {
   max-width: 100%;
   font-size: clamp(0.96rem, 1.18vw, 1.08rem);
   line-height: 1.74;
 }
 
-#overview .body-text + .body-text {
+header#overview .body-text + .body-text {
   margin-top: 1rem;
 }
 
-#overview .hero-image-wrap {
-  grid-column: 2;
-  grid-row: 1 / span 2;
+header#overview .hero-image-wrap {
   width: 100%;
   max-width: none;
   align-self: start;
   justify-self: end;
   order: initial;
-  margin-top: clamp(-10.5rem, -14vw, -7rem);
   overflow: visible;
   padding: 0;
+  margin-top: 0.2rem;
 }
 
-#overview .hero-portrait {
+header#overview .hero-portrait {
   display: block;
   width: 100%;
   height: auto;
@@ -2841,26 +2814,26 @@ a:focus-visible, button:focus-visible {
   border-radius: var(--radius-xl);
 }
 
+header#overview + .divider {
+  opacity: 0.75;
+}
+
 #education {
   padding-top: clamp(2rem, 4vh, 3rem);
 }
 
 @media (max-width: 980px) {
-  #page-home header {
+  header#overview {
     padding-top: 1.75rem;
   }
 
-  #overview .section-inner {
+  header#overview .hero-inner {
     grid-template-columns: minmax(0, 1fr) minmax(230px, 30vw);
     column-gap: clamp(2rem, 4vw, 3rem);
   }
 
-  #page-home .hero-name {
+  header#overview .hero-name {
     font-size: clamp(3.4rem, 7.4vw, 5.5rem);
-  }
-
-  #overview .hero-image-wrap {
-    margin-top: clamp(-8rem, -13vw, -5rem);
   }
 }
 
