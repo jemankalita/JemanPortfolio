@@ -1116,11 +1116,6 @@ header {
   padding: 96px 0 58px;
 }
 
-.hero-inner {
-  align-items: flex-start;
-  gap: 4rem;
-}
-
 .hero-name {
   font-family: Inter, "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(3.3rem, 9vw, 7.25rem);
@@ -1143,28 +1138,6 @@ header {
   max-width: 36rem;
   font-size: 0.92rem;
   color: #777775;
-}
-
-.hero-image-wrap {
-  width: 210px;
-  padding: 0;
-  border: 1px solid #d9d9d3;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  transition: none;
-}
-
-.hero-image-wrap:hover {
-  transform: none;
-  border-color: #d9d9d3;
-  box-shadow: none;
-}
-
-.hero-portrait {
-  height: 292px;
-  border-radius: 0;
-  box-shadow: none;
 }
 
 .divider,
@@ -2753,11 +2726,7 @@ a:focus-visible, button:focus-visible {
   padding: clamp(1.6rem, 4vh, 2.8rem) 0 0;
 }
 
-#page-home .hero-inner {
-  display: block;
-  min-height: 0;
-  padding: 0 2rem clamp(1rem, 2vh, 1.6rem);
-}
+/* Hero layout handled by global .hero-inner grid, no overrides needed */
 
 #page-home .hero-text {
   max-width: min(100%, 720px);
