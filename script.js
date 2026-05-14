@@ -174,7 +174,7 @@ if (heroWrap) {
   // Show home page or hash-specified page on load
   // Support both old (#page-contact) and new (#contact) hash formats
   const rawHash = location.hash.replace(/^#(page-)?/, '') || 'home';
-  const validPages = ['home', 'achievements', 'projects', 'blogs', 'interests', 'contact'];
+  const validPages = ['home', 'projects', 'blogs', 'interests', 'contact'];
   const startPage = validPages.includes(rawHash) ? rawHash : 'home';
 
   document.querySelectorAll('.page').forEach(p => {
