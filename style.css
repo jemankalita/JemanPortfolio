@@ -2854,21 +2854,23 @@ header#overview + .divider {
     overflow-x: auto;
   }
 
-  #page-home header {
+  header#overview {
     padding: 1.75rem 0 1.25rem;
   }
 
-  #page-home .hero-inner {
+  header#overview .hero-inner {
+    display: flex;
+    flex-direction: column;
     padding: 0 1.25rem;
     text-align: center;
     overflow: hidden;
   }
 
-  #page-home .hero-text {
+  header#overview .hero-text {
     align-items: center;
   }
 
-  #page-home .hero-name {
+  header#overview .hero-name {
     max-width: 100%;
     font-size: clamp(2rem, 10vw, 2.35rem);
     line-height: 0.9;
@@ -2877,49 +2879,32 @@ header#overview + .divider {
     overflow-wrap: anywhere;
   }
 
-  #page-home .hero-philosophy {
+  header#overview .hero-philosophy {
     max-width: min(100%, 22rem);
     margin: 0 auto;
     font-size: 0.84rem;
     line-height: 1.55;
   }
 
-  #page-home > .divider {
-    display: block;
-    opacity: 0.75;
-  }
-
-  #overview {
-    padding: 1.75rem 0 2.4rem;
-  }
-
-  #overview .section-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 0 1.25rem;
-    align-items: center;
-  }
-
-  #overview .section-label,
-  #overview .section-content {
+  header#overview .about-text-container {
     width: 100%;
     max-width: 38rem;
     align-self: center;
+    text-align: left;
   }
 
-  #overview .body-text {
+  header#overview .body-text {
     overflow-wrap: break-word;
   }
 
-  #overview .hero-image-wrap {
+  header#overview .hero-image-wrap {
     width: min(230px, 60vw);
     align-self: center;
     order: -1;
     margin-top: 0;
   }
 
-  #overview .hero-portrait {
+  header#overview .hero-portrait {
     height: auto;
     min-height: 0;
     max-height: 300px;
@@ -2929,11 +2914,11 @@ header#overview + .divider {
 }
 
 @media (max-width: 400px) {
-  #page-home .hero-name {
+  header#overview .hero-name {
     font-size: clamp(1.95rem, 9.5vw, 2.25rem);
   }
 
-  #overview .hero-image-wrap {
+  header#overview .hero-image-wrap {
     width: min(180px, 54vw);
   }
 }
