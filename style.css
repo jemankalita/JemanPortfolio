@@ -23,6 +23,8 @@ body {
   font-family: Georgia, 'Times New Roman', Times, serif;
   color: #111;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* ─── NAV ─────────────────────────────────── */
@@ -209,6 +211,10 @@ header {
   margin: 0 auto;
   height: 1px;
   background: #e8e6e1;
+}
+
+#page-interests .divider {
+  max-width: 1200px;
 }
 
 .full-divider {
@@ -2941,8 +2947,12 @@ header#overview + .divider {
    INTERESTS PORTAL — CINEMATIC ARCHIVE
    ═══════════════════════════════════════════ */
 
-#interests-portal {
-  padding-top: 2rem;
+#interests-portal .section-inner {
+  max-width: 1200px;
+}
+
+#interests-portal .section-content {
+  flex: 1;
 }
 
 .portal-grid {
@@ -2951,6 +2961,7 @@ header#overview + .divider {
   gap: 2.5rem;
   margin-top: 3rem;
   padding-bottom: 6rem;
+  width: 100%;
 }
 
 .portal-card {
@@ -3079,12 +3090,36 @@ header#overview + .divider {
 }
 
 /* --- Immersive Portal View --- */
+.portal-immersive-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              visibility 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portal-immersive-modal.active {
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+}
+
 .modal-backdrop {
+  position: absolute;
+  inset: 0;
   background: #f7f7f5;
   backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
 }
 
 .modal-container {
+  position: relative;
   width: 100vw;
   height: 100vh;
   max-width: none;
@@ -3093,7 +3128,9 @@ header#overview + .divider {
   background: transparent;
   padding: 0;
   box-shadow: none;
+  overflow-y: auto;
 }
+
 
 .portal-view-inner {
   max-width: 1100px;
