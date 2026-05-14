@@ -2771,7 +2771,7 @@ header#overview .hero-name {
   line-height: 0.9;
   letter-spacing: -0.05em;
   white-space: nowrap;
-  margin-bottom: 0.8rem;
+  margin-bottom: clamp(1rem, 2vh, 1.4rem);
 }
 
 header#overview .hero-philosophy {
@@ -2781,6 +2781,13 @@ header#overview .hero-philosophy {
 
 header#overview .about-text-container {
   margin-top: 0;
+}
+
+header#overview .about-label {
+  display: block;
+  min-width: 0;
+  margin-bottom: 0.85rem;
+  padding-top: 0;
 }
 
 header#overview .body-text {
@@ -2813,6 +2820,7 @@ header#overview .hero-portrait {
   object-fit: cover;
   object-position: center top;
   border-radius: 0;
+  filter: grayscale(1) contrast(1.04);
 }
 
 header#overview + .divider {
