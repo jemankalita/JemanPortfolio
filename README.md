@@ -9,14 +9,14 @@ jeman-kalita-site/
 ├── index.html       ← all pages live here
 ├── style.css        ← all styles
 ├── script.js        ← page routing + nav
-├── portfolio.png    ← portrait image
+├── portfolio.webp   ← portrait image (480px wide)
 ├── favicon.svg      ← site icon
 └── README.md
 ```
 
 ## How to update your photo
 
-Replace `portfolio.png` with a new image using the same filename, then refresh the site.
+Replace `portfolio.webp` with a new 480px-wide WebP using the same filename, then refresh the site.
 
 ## How to update your links
 
@@ -36,7 +36,7 @@ Open `index.html` directly in any browser. No build step is needed.
 Or serve it locally:
 
 ```bash
-python -m http.server 8000
+python dev-server.py
 ```
 
 Then visit `http://localhost:8000`.
