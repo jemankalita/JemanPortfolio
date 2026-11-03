@@ -3,11 +3,22 @@
 
 <head>
   <meta charset="UTF-8">
+  <script>
+    // Apply the saved or system theme before first paint to avoid a flash.
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem('theme'); } catch (e) {}
+      if (theme !== 'dark' && theme !== 'light') {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 
   <!-- SEO Primary Meta Tags -->
-  <title>Jeman Kalita — I'm HIM</title>
-  <meta name="title" content="Jeman Kalita — I'm HIM">
+  <title>Jeman Kalita</title>
+  <meta name="title" content="Jeman Kalita">
   <meta name="description"
     content="The personal digital archive of Jeman Kalita. Building at the intersection of quantitative finance, artificial intelligence, and high-performance software systems.">
   <meta name="keywords"
@@ -19,7 +30,7 @@
   <!-- Open Graph / Facebook / LinkedIn -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jeman.vercel.app/">
-  <meta property="og:title" content="Jeman Kalita — I'm HIM">
+  <meta property="og:title" content="Jeman Kalita">
   <meta property="og:description"
     content="The personal digital archive of Jeman Kalita. Building at the intersection of quantitative finance, artificial intelligence, and high-performance software systems.">
   <meta property="og:image" content="https://jeman.vercel.app/og-image.jpg">
@@ -28,7 +39,7 @@
   <!-- Twitter / X -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://jeman.vercel.app/">
-  <meta property="twitter:title" content="Jeman Kalita — I'm HIM">
+  <meta property="twitter:title" content="Jeman Kalita">
   <meta property="twitter:description"
     content="The personal digital archive of Jeman Kalita. Building at the intersection of quantitative finance, artificial intelligence, and high-performance software systems.">
   <meta property="twitter:image" content="https://jeman.vercel.app/og-image.jpg">
@@ -102,9 +113,22 @@
         <a href="#" data-page="home" class="active">Overview</a>
         <a href="projects" data-page="projects">Projects</a>
         <a href="blogs" data-page="blogs">Blogs</a>
-        <a href="interests" data-page="interests">Interests</a>
+        <!-- Interests is parked for now; the page markup below is kept for later.
+        <a href="interests" data-page="interests">Interests</a> -->
         <a href="contact" data-page="contact">Contact</a>
       </div>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+        <svg class="theme-icon theme-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5" />
+          <path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" />
+        </svg>
+        <svg class="theme-icon theme-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="theme-moon-body" d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z" />
+          <path class="theme-star" d="M18 2l.6 1.4L20 4l-1.4.6L18 6l-.6-1.4L16 4l1.4-.6z" />
+          <path class="theme-star" d="M22 8l.4.9.9.4-.9.4L22 10.6l-.4-.9-.9-.4.9-.4z" />
+          <path class="theme-star" d="M14.5 1l.3.7.7.3-.7.3-.3.7-.3-.7-.7-.3.7-.3z" />
+        </svg>
+      </button>
     </div>
   </nav>
 
@@ -133,7 +157,7 @@
                 rel="noopener">FPV
                 drones<span class="info-card"><strong>FPV drones</strong><span>First-person-view drones flown through a
                     live camera feed, blending electronics, radio systems, and fast control.</span></span></a>, and
-              somewhere along the way it pivoted into abusing <a class="info-token"
+              somewhere along the way it pivoted into building with <a class="info-token"
                 href="https://en.wikipedia.org/wiki/Claude_(language_model)" target="_blank" rel="noopener">Claude
                 Code<span class="info-card"><strong>Claude Code</strong><span>Anthropic's agentic coding tool for
                     working
@@ -151,7 +175,7 @@
                 class="info-token info-token-thiel" href="https://en.wikipedia.org/wiki/Peter_Thiel" target="_blank"
                 rel="noopener">Peter Thiel<span class="info-card info-card-person"><img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Peter_Thiel.jpg/250px-Peter_Thiel.jpg"
-                    alt="Peter Thiel"><strong>Peter Thiel</strong><span>PayPal co-founder, investor, entrepreneur, and
+                    loading="lazy" alt="Peter Thiel"><strong>Peter Thiel</strong><span>PayPal co-founder, investor, entrepreneur, and
                     author known for contrarian thinking, monopoly theory, and backing category-defining
                     companies.</span></span></a> and his ideologies around contrarian thinking, monopoly, and building
               things that matter. I started investing the day I
@@ -168,7 +192,7 @@
         </div>
 
         <div class="hero-image-wrap">
-          <img src="/portfolio.png" class="hero-portrait" alt="Jeman Kalita">
+          <img src="/portfolio.webp" width="480" height="617" fetchpriority="high" class="hero-portrait" alt="Jeman Kalita">
         </div>
       </div>
     </header>
@@ -181,7 +205,7 @@
         <div class="section-content">
           <div class="exp-entry">
             <div class="exp-header">
-              <img src="/stealth-startup-logo.jpg" class="school-logo stealth-logo-img" alt="Stealth Startup logo"
+              <img src="/stealth-startup-logo.jpg" width="200" height="200" class="school-logo stealth-logo-img" alt="Stealth Startup logo"
                 loading="lazy">
               <div class="exp-title-group">
                 <div class="exp-company-row">
@@ -200,7 +224,7 @@
 
           <div class="exp-entry">
           <div class="exp-header">
-            <img src="/suslogo.png" class="school-logo" alt="SIG logo" loading="lazy"
+            <img src="/suslogo.png" width="200" height="200" class="school-logo" alt="SIG logo" loading="lazy"
               style="border: none; background: transparent; padding: 0; width: 44px; height: 44px;">
             <div class="exp-title-group">
               <div class="exp-company-row">
@@ -231,7 +255,7 @@
         <div class="section-content">
           <div class="exp-entry">
             <div class="exp-header">
-              <img src="/vit-logo.png" class="school-logo school-logo--seal" alt="Vellore Institute of Technology logo"
+              <img src="/vit-logo.png" width="250" height="264" class="school-logo school-logo--seal" alt="Vellore Institute of Technology logo"
                 loading="lazy">
               <div class="exp-title-group">
                 <div class="exp-company-row">
@@ -249,23 +273,26 @@
 
           <div class="exp-entry">
             <div class="exp-header">
-              <img src="/iitm-logo.png" class="school-logo school-logo--seal" alt="IIT Madras logo" loading="lazy">
+              <img src="/iitm-logo.png" width="250" height="250" class="school-logo school-logo--seal" alt="IIT Madras logo" loading="lazy">
               <div class="exp-title-group">
                 <div class="exp-company-row">
                   <p class="edu-school">Indian Institute of Technology, Madras</p>
                   <div class="live-status live-status--past">
                     <span class="status-label">Oct 2026</span>
                   </div>
+                  <div class="live-status live-status--dropout">
+                    <span class="status-label">Dropout</span>
+                  </div>
                 </div>
                 <p class="edu-detail">Bachelor of Science &middot; Data Science</p>
-                <p class="edu-detail">Dropped out</p>
+                <p class="edu-detail edu-detail--highlight">Chose to focus on my skills instead of pursuing two degrees</p>
               </div>
             </div>
           </div>
 
           <div class="exp-entry">
             <div class="exp-header">
-              <img src="/dps-logo.jpg" class="school-logo" alt="DPS Guwahati logo" loading="lazy">
+              <img src="/dps-logo.jpg" width="200" height="200" class="school-logo" alt="DPS Guwahati logo" loading="lazy">
               <div class="exp-title-group">
                 <div class="exp-company-row">
                   <p class="edu-school">Delhi Public School, Guwahati</p>
@@ -283,7 +310,7 @@
               Star Student
               <span class="info-card"
                 style="padding: 0; background: transparent; border: none; box-shadow: none; width: 240px;">
-                <img src="/star.jpg" alt="Star Student Certificate"
+                <img src="/star.webp" width="480" height="692" loading="lazy" alt="Star Student Certificate"
                   style="width: 100%; height: auto; border-radius: 12px; box-shadow: var(--shadow); display: block;">
               </span>
             </div>
@@ -295,32 +322,258 @@
       </div>
     </section>
 
+    <div class="divider"></div>
+
+    <section id="skills">
+      <div class="section-inner">
+        <span class="section-label">Skills</span>
+        <div class="section-content skills">
+          <div class="skill-tabs" role="tablist" aria-label="Skill categories">
+            <span class="skill-tab-indicator" aria-hidden="true"></span>
+            <button type="button" class="skill-tab" role="tab" id="skill-tab-languages" aria-controls="skill-panel-languages" aria-selected="true">Languages<span class="skill-count">7</span></button>
+            <button type="button" class="skill-tab" role="tab" id="skill-tab-backend" aria-controls="skill-panel-backend" aria-selected="false" tabindex="-1">Backend &amp; Systems<span class="skill-count">14</span></button>
+            <button type="button" class="skill-tab" role="tab" id="skill-tab-ai" aria-controls="skill-panel-ai" aria-selected="false" tabindex="-1">AI &amp; Agents<span class="skill-count">4</span></button>
+            <button type="button" class="skill-tab" role="tab" id="skill-tab-infra" aria-controls="skill-panel-infra" aria-selected="false" tabindex="-1">DevOps &amp; Reliability<span class="skill-count">13</span></button>
+            <button type="button" class="skill-tab" role="tab" id="skill-tab-testing" aria-controls="skill-panel-testing" aria-selected="false" tabindex="-1">Testing &amp; Quality<span class="skill-count">9</span></button>
+            <button type="button" class="skill-tab" role="tab" id="skill-tab-data" aria-controls="skill-panel-data" aria-selected="false" tabindex="-1">Data &amp; Databases<span class="skill-count">7</span></button>
+            <button type="button" class="skill-tab" role="tab" id="skill-tab-quant" aria-controls="skill-panel-quant" aria-selected="false" tabindex="-1">Quant &amp; Trading<span class="skill-count">10</span></button>
+            <button type="button" class="skill-tab" role="tab" id="skill-tab-cp" aria-controls="skill-panel-cp" aria-selected="false" tabindex="-1">Algorithms<span class="skill-count">4</span></button>
+            <button type="button" class="skill-tab" role="tab" id="skill-tab-hardware" aria-controls="skill-panel-hardware" aria-selected="false" tabindex="-1">Hardware &amp; Creative<span class="skill-count">6</span></button>
+            <button type="button" class="skill-tab" role="tab" id="skill-tab-mindset" aria-controls="skill-panel-mindset" aria-selected="false" tabindex="-1">Mindset<span class="skill-count">2</span></button>
+          </div>
+          <div class="skill-panel" role="tabpanel" id="skill-panel-languages" aria-labelledby="skill-tab-languages">
+            <h3 class="skill-panel-title">Languages</h3>
+            <ul class="skill-chips">
+              <li class="skill-chip">Python</li>
+              <li class="skill-chip">TypeScript</li>
+              <li class="skill-chip">JavaScript</li>
+              <li class="skill-chip">Java</li>
+              <li class="skill-chip">C++</li>
+              <li class="skill-chip">SQL</li>
+              <li class="skill-chip">Shell Scripting</li>
+            </ul>
+          </div>
+          <div class="skill-panel" role="tabpanel" id="skill-panel-backend" aria-labelledby="skill-tab-backend" hidden>
+            <h3 class="skill-panel-title">Backend &amp; Systems</h3>
+            <ul class="skill-chips">
+              <li class="skill-chip">Software Engineering</li>
+              <li class="skill-chip">Backend Development</li>
+              <li class="skill-chip">REST APIs</li>
+              <li class="skill-chip">API Development</li>
+              <li class="skill-chip">API Integration</li>
+              <li class="skill-chip">GraphQL</li>
+              <li class="skill-chip">Node.js</li>
+              <li class="skill-chip">Full-Stack Development</li>
+              <li class="skill-chip">System Design</li>
+              <li class="skill-chip">Distributed Systems</li>
+              <li class="skill-chip">Microservices</li>
+              <li class="skill-chip">Performance Optimization</li>
+              <li class="skill-chip">Design Patterns</li>
+              <li class="skill-chip">Object-Oriented Programming</li>
+            </ul>
+          </div>
+          <div class="skill-panel" role="tabpanel" id="skill-panel-ai" aria-labelledby="skill-tab-ai" hidden>
+            <h3 class="skill-panel-title">AI &amp; Agents</h3>
+            <ul class="skill-chips">
+              <li class="skill-chip">AI Agent Development</li>
+              <li class="skill-chip">Model Context Protocol (MCP)</li>
+              <li class="skill-chip">Large Language Models</li>
+              <li class="skill-chip">Prompt Engineering</li>
+            </ul>
+          </div>
+          <div class="skill-panel" role="tabpanel" id="skill-panel-infra" aria-labelledby="skill-tab-infra" hidden>
+            <h3 class="skill-panel-title">DevOps &amp; Reliability</h3>
+            <ul class="skill-chips">
+              <li class="skill-chip">CI/CD</li>
+              <li class="skill-chip">Git</li>
+              <li class="skill-chip">GitHub</li>
+              <li class="skill-chip">GitHub Actions</li>
+              <li class="skill-chip">Docker</li>
+              <li class="skill-chip">Kubernetes</li>
+              <li class="skill-chip">Linux</li>
+              <li class="skill-chip">Deployment</li>
+              <li class="skill-chip">Observability</li>
+              <li class="skill-chip">Monitoring</li>
+              <li class="skill-chip">Datadog</li>
+              <li class="skill-chip">Sentry</li>
+              <li class="skill-chip">Incident Management</li>
+            </ul>
+          </div>
+          <div class="skill-panel" role="tabpanel" id="skill-panel-testing" aria-labelledby="skill-tab-testing" hidden>
+            <h3 class="skill-panel-title">Testing &amp; Quality</h3>
+            <ul class="skill-chips">
+              <li class="skill-chip">Software Testing</li>
+              <li class="skill-chip">Integration Testing</li>
+              <li class="skill-chip">Debugging</li>
+              <li class="skill-chip">Unit Testing</li>
+              <li class="skill-chip">Test Automation</li>
+              <li class="skill-chip">Code Review</li>
+              <li class="skill-chip">Troubleshooting</li>
+              <li class="skill-chip">Technical Documentation</li>
+              <li class="skill-chip">Agile Methodologies</li>
+            </ul>
+          </div>
+          <div class="skill-panel" role="tabpanel" id="skill-panel-data" aria-labelledby="skill-tab-data" hidden>
+            <h3 class="skill-panel-title">Data &amp; Databases</h3>
+            <ul class="skill-chips">
+              <li class="skill-chip">PostgreSQL</li>
+              <li class="skill-chip">MongoDB</li>
+              <li class="skill-chip">Redis</li>
+              <li class="skill-chip">MySQL</li>
+              <li class="skill-chip">DBMS</li>
+              <li class="skill-chip">Pandas</li>
+              <li class="skill-chip">Matplotlib</li>
+            </ul>
+          </div>
+          <div class="skill-panel" role="tabpanel" id="skill-panel-quant" aria-labelledby="skill-tab-quant" hidden>
+            <h3 class="skill-panel-title">Quant &amp; Trading</h3>
+            <ul class="skill-chips">
+              <li class="skill-chip">Quantitative Finance</li>
+              <li class="skill-chip">Trading</li>
+              <li class="skill-chip">Market Making</li>
+              <li class="skill-chip">Options</li>
+              <li class="skill-chip">Risk Management</li>
+              <li class="skill-chip">Probability</li>
+              <li class="skill-chip">Statistics</li>
+              <li class="skill-chip">Game Theory</li>
+              <li class="skill-chip">Mental Math</li>
+              <li class="skill-chip">Decision-Making</li>
+            </ul>
+          </div>
+          <div class="skill-panel" role="tabpanel" id="skill-panel-cp" aria-labelledby="skill-tab-cp" hidden>
+            <h3 class="skill-panel-title">Algorithms</h3>
+            <ul class="skill-chips">
+              <li class="skill-chip">Algorithms</li>
+              <li class="skill-chip">Data Structures</li>
+              <li class="skill-chip">Competitive Programming</li>
+              <li class="skill-chip">Problem Solving</li>
+            </ul>
+          </div>
+          <div class="skill-panel" role="tabpanel" id="skill-panel-hardware" aria-labelledby="skill-tab-hardware" hidden>
+            <h3 class="skill-panel-title">Hardware &amp; Creative</h3>
+            <ul class="skill-chips">
+              <li class="skill-chip">Robotics</li>
+              <li class="skill-chip">Drone Building</li>
+              <li class="skill-chip">Betaflight</li>
+              <li class="skill-chip">Arduino IDE</li>
+              <li class="skill-chip">Adobe Premiere Pro</li>
+              <li class="skill-chip">Adobe Photoshop</li>
+            </ul>
+          </div>
+          <div class="skill-panel" role="tabpanel" id="skill-panel-mindset" aria-labelledby="skill-tab-mindset" hidden>
+            <h3 class="skill-panel-title">Mindset</h3>
+            <ul class="skill-chips">
+              <li class="skill-chip">Critical Thinking</li>
+              <li class="skill-chip">Life Skills</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="achievements">
+      <div class="section-inner">
+        <span class="section-label">Achievements</span>
+        <div class="section-content">
+          <div class="achv-grid">
+            <article class="achv-card">
+              <p class="achv-stat">12</p>
+              <h3 class="achv-title">Interview and job offers from one post</h3>
+              <p class="achv-desc">A post on X went viral and turned into 12 interview and job offers, including one from <a href="https://whop.com/" target="_blank" rel="noopener">Whop</a>.</p>
+              <div class="achv-links">
+                <a href="https://x.com/jemxnn/status/2060772377399865692" target="_blank" rel="noopener">See the post</a>
+                <a href="/blog/one-tweet-changed-everything" data-blog-slug="one-tweet-changed-everything">Read the story</a>
+              </div>
+            </article>
+
+            <article class="achv-card">
+              <p class="achv-stat">#49</p>
+              <h3 class="achv-title">UNSW Battlecode 2026</h3>
+              <p class="achv-desc">Peaked at #49 overall and #5 in India on the ladder as a solo contestant. Finished #159 of 972.</p>
+              <div class="achv-links">
+                <a href="/projects/unsw-certificate.jpg" target="_blank" rel="noopener">Certificate</a>
+                <a href="https://battlecode.au/" target="_blank" rel="noopener">Competition</a>
+              </div>
+            </article>
+
+            <article class="achv-card">
+              <p class="achv-stat">1,791</p>
+              <h3 class="achv-title">Cambridge Battlecode 2026</h3>
+              <p class="achv-desc">Peak rating of 1,791 and a peak position of #125 on the ladder.</p>
+              <div class="achv-links">
+                <a href="https://2026a.battlecode.co.uk/" target="_blank" rel="noopener">Competition</a>
+              </div>
+            </article>
+          </div>
+
+          <h3 class="achv-subhead">Credentials &amp; programs</h3>
+          <ul class="cred-list">
+            <li class="cred-row">
+              <div class="cred-main">
+                <span class="cred-title">Palantir Winter Tech Fellowship</span>
+                <span class="cred-meta">Palantir Technologies &middot; Jul 2026 &middot; ID t3y5zhwym2sc</span>
+              </div>
+              <div class="cred-links">
+                <a class="cred-link" href="https://verify.skilljar.com/c/t3y5zhwym2sc" target="_blank" rel="noopener">Verify</a>
+              </div>
+            </li>
+            <li class="cred-row">
+              <div class="cred-main">
+                <span class="cred-title">2026 ICPC Online Challenge powered by Huawei</span>
+                <span class="cred-meta">ICPC &middot; Aug 2026 &middot; Certificate of Achievement</span>
+              </div>
+              <div class="cred-links">
+                <a class="cred-link" href="/achievements/icpc-certificate.jpg" target="_blank" rel="noopener">Certificate</a>
+              </div>
+            </li>
+            <li class="cred-row">
+              <div class="cred-main">
+                <span class="cred-title">Stanford Code in Place &amp; Probability for AI</span>
+                <span class="cred-meta">Stanford University &middot; Selected</span>
+              </div>
+            </li>
+            <li class="cred-row">
+              <div class="cred-main">
+                <span class="cred-title">Codeforces</span>
+                <span class="cred-meta">Rated 954</span>
+              </div>
+              <div class="cred-links">
+                <a class="cred-link" href="https://codeforces.com/profile/finalb0ss" target="_blank" rel="noopener">Profile</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <footer>
       <div class="full-divider"></div>
       <div class="footer-inner">
         <span class="footer-left">Jeman Kalita &middot; 2026 <span class="footer-updated">· Updated November
             2026</span></span>
         <div class="footer-icons">
-          <a href="mailto:jemankalita@gmail.com" class="footer-icon" title="Email">
+          <a href="mailto:jemankalita@gmail.com" class="footer-icon" aria-label="Email" title="Email">
             <svg viewBox="0 0 24 24">
               <path
                 d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" />
             </svg>
           </a>
-          <a href="https://www.linkedin.com/in/jemankalita/" class="footer-icon" title="LinkedIn" target="_blank"
+          <a href="https://www.linkedin.com/in/jemankalita/" class="footer-icon" aria-label="LinkedIn" title="LinkedIn" target="_blank"
             rel="noopener">
             <svg viewBox="0 0 24 24">
               <path
                 d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
             </svg>
           </a>
-          <a href="https://github.com/jemankalita" class="footer-icon" title="GitHub" target="_blank" rel="noopener">
+          <a href="https://github.com/jemankalita" class="footer-icon" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24">
               <path
                 d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
             </svg>
           </a>
-          <a href="https://x.com/jemxnn" class="footer-icon" title="X / Twitter" target="_blank" rel="noopener">
+          <a href="https://x.com/jemxnn" class="footer-icon" aria-label="X" title="X / Twitter" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24">
               <path
                 d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -341,102 +594,93 @@
 
     <div class="page-header">
       <div class="page-header-inner">
-        <h1 class="page-title">Projects</h1>
+        <h2 class="page-title">Projects</h2>
         <p class="page-subtitle">Useful builds, experiments, and things made for the joy of making.</p>
       </div>
     </div>
 
     <div class="divider"></div>
 
-    <section id="projects-list">
-      <div class="section-inner">
-        <span class="section-label">Selected</span>
-        <div class="section-content project-list">
+    <section id="projects-list" class="projects-wrap">
+      <div class="project-grid">
 
-          <article class="project">
-            <a class="project-media" href="https://vit-map.vercel.app" target="_blank" rel="noopener"
-              aria-label="Open VIT Map">
-              <video class="project-video" src="/projects/vitmap.mp4" poster="/projects/vitmap-poster.jpg" muted
-                loop playsinline preload="none"></video>
-              <span class="project-media-hint">Hover to play</span>
-            </a>
-            <div class="project-body">
-              <div class="project-title-row">
-                <h2 class="project-title">VIT Map</h2>
-                <span class="project-stat">~3k daily active users</span>
-              </div>
-              <p class="project-desc">A 3D map of VIT Vellore with one fast search over lecture halls, PRP rooms,
-                hostel blocks, mess menus, ATMs and pharmacies, plus walking routes between them. Used by around
-                3,000 students every day, and it got a warm reception from VIT students on Reddit.</p>
-              <p class="project-tech">TypeScript &middot; MapLibre &middot; Vercel</p>
-              <div class="project-links">
-                <a href="https://vit-map.vercel.app" target="_blank" rel="noopener">Live site</a>
-                <a href="https://www.reddit.com/r/Vit/s/vdTCK3845y" target="_blank" rel="noopener">Reddit feedback</a>
-              </div>
-            </div>
-          </article>
+        <article class="project-card">
+          <a class="project-media" href="https://vit-map.vercel.app" target="_blank" rel="noopener"
+            aria-label="Open VIT Map">
+            <video class="project-video" src="/projects/vitmap.mp4" poster="/projects/vitmap-poster.jpg" muted loop
+              playsinline preload="none"></video>
+            <span class="project-media-hint">Hover to play</span>
+          </a>
+          <div class="project-head">
+            <h2 class="project-title">VIT Map</h2>
+            <span class="project-stat"><span class="pulse-dot"></span>~3k daily users</span>
+          </div>
+          <p class="project-desc">A 3D map of VIT Vellore with one fast search over lecture halls, PRP rooms, hostels,
+            mess menus, ATMs and pharmacies, plus walking routes. Used by about 3,000 students a day and well
+            received on Reddit.</p>
+          <p class="project-tech">TypeScript &middot; MapLibre &middot; Vercel</p>
+          <div class="project-links">
+            <a href="https://vit-map.vercel.app" target="_blank" rel="noopener">Live site &nearr;</a>
+            <a href="https://www.reddit.com/r/Vit/s/vdTCK3845y" target="_blank" rel="noopener">Reddit &nearr;</a>
+          </div>
+        </article>
 
-          <article class="project">
-            <a class="project-media" href="https://github.com/jemankalita/C0RTEX" target="_blank" rel="noopener"
-              aria-label="Open C0RTEX on GitHub">
-              <img src="/projects/cortex.jpg" alt="C0RTEX analyzer screen with the vulnerable-shop demo repository"
-                loading="lazy">
-            </a>
-            <div class="project-body">
-              <div class="project-title-row">
-                <h2 class="project-title">C0RTEX</h2>
-              </div>
-              <p class="project-desc">An AI security agent that reads a codebase like an attacker. It maps the attack
-                surface, traces risky paths, explains the real-world impact, scores safety and drafts reviewable
-                fixes, for codebases you are authorized to analyze.</p>
-              <p class="project-tech">TypeScript &middot; Next.js &middot; Gemini</p>
-              <div class="project-links">
-                <a href="https://github.com/jemankalita/C0RTEX" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-          </article>
+        <article class="project-card">
+          <a class="project-media" href="https://github.com/jemankalita/C0RTEX" target="_blank" rel="noopener"
+            aria-label="Open C0RTEX on GitHub">
+            <img src="/projects/cortex-card.webp" width="1024" height="640" alt="C0RTEX homepage: The AI security analyst, with a finding and a safety score" loading="lazy">
+          </a>
+          <div class="project-head">
+            <h2 class="project-title">C0RTEX</h2>
+            <span class="project-tag">AI security</span>
+          </div>
+          <p class="project-desc">An AI security agent that reads a codebase like an attacker: it maps the attack
+            surface, traces risky paths, explains the impact, scores safety and drafts reviewable fixes.</p>
+          <p class="project-tech">TypeScript &middot; Next.js &middot; Gemini</p>
+          <div class="project-links">
+            <a href="https://github.com/jemankalita/C0RTEX" target="_blank" rel="noopener">GitHub &nearr;</a>
+          </div>
+        </article>
 
-          <article class="project">
-            <a class="project-media" href="https://game.battlecode.au" target="_blank" rel="noopener"
-              aria-label="Open UNSW Battlecode">
-              <img src="/projects/unsw-battlecode.jpg" alt="UNSW Battlecode 2026 homepage: 973 teams, 2,043 competitors, 41 countries"
-                loading="lazy">
-            </a>
-            <div class="project-body">
-              <div class="project-title-row">
-                <h2 class="project-title">UNSW Battlecode 2026</h2>
-              </div>
-              <p class="project-desc">Leviathan, a C++ bot for a contest of 973 teams from 41 countries. Every dragon
-                runs its own copy of the program with no shared memory and about 25 ms per turn. It swarms early,
-                routes through portals, splits late and rams longer enemies.</p>
-              <p class="project-tech">C++</p>
-              <div class="project-links">
-                <a href="https://game.battlecode.au" target="_blank" rel="noopener">Competition</a>
-                <a href="https://github.com/jemankalita/UNSW-BATTLECODE-2026" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-          </article>
+        <article class="project-card">
+          <a class="project-media" href="https://battlecode.au" target="_blank" rel="noopener"
+            aria-label="Open UNSW Battlecode">
+            <img src="/projects/unsw-card.webp" width="1024" height="640" alt="UNSW Battlecode homepage" loading="lazy">
+          </a>
+          <div class="project-head">
+            <h2 class="project-title">UNSW Battlecode 2026</h2>
+            <span class="project-stat project-stat--rank">#159 of 972</span>
+          </div>
+          <p class="project-desc">Leviathan, a C++ bot where every dragon runs its own copy of the program with no
+            shared memory and about 25 ms a turn. Competing solo against 972 teams, I finished #159 overall after
+            peaking at #49 overall and #5 in the India region on the ladder.</p>
+          <p class="project-tech">C++ &middot; Solo &middot; Team DIET CODE</p>
+          <div class="project-links">
+            <a href="/projects/unsw-certificate.jpg" target="_blank" rel="noopener">Certificate &nearr;</a>
+            <a href="https://github.com/jemankalita/UNSW-BATTLECODE-2026" target="_blank" rel="noopener">GitHub &nearr;</a>
+            <a href="https://battlecode.au" target="_blank" rel="noopener">Competition &nearr;</a>
+          </div>
+        </article>
 
-          <article class="project">
-            <a class="project-media" href="https://github.com/jemankalita/opurnos" target="_blank" rel="noopener"
-              aria-label="Open Opurnos on GitHub">
-              <img src="/projects/opurnos.jpg" alt="Opurnos README describing the product" loading="lazy">
-            </a>
-            <div class="project-body">
-              <div class="project-title-row">
-                <h2 class="project-title">Opurnos</h2>
-              </div>
-              <p class="project-desc">A chief of staff for your ambitions. It watches 92 sources for hackathons,
-                fellowships, research roles and internships, checks eligibility against your resume with quoted
-                evidence, and applies only with your approval. Built for the Meta Global AI Developer Hackathon.</p>
-              <p class="project-tech">TypeScript &middot; Next.js &middot; OpenAI</p>
-              <div class="project-links">
-                <a href="https://github.com/jemankalita/opurnos" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-          </article>
+        <article class="project-card">
+          <a class="project-media" href="https://github.com/jemankalita/opurnos" target="_blank" rel="noopener"
+            aria-label="Open Opurnos on GitHub">
+            <video class="project-video" src="/projects/opurnos.mp4" poster="/projects/opurnos-poster.jpg" muted loop
+              playsinline preload="none"></video>
+            <span class="project-media-hint">Hover to play</span>
+          </a>
+          <div class="project-head">
+            <h2 class="project-title">Opurnos</h2>
+          </div>
+          <p class="project-desc">A chief of staff for your ambitions. It watches 92 sources for hackathons,
+            fellowships and internships, checks eligibility against your resume with quoted evidence, and applies
+            only with your approval.</p>
+          <p class="project-tech">TypeScript &middot; Next.js &middot; OpenAI</p>
+          <div class="project-links">
+            <a href="https://github.com/jemankalita/opurnos" target="_blank" rel="noopener">GitHub &nearr;</a>
+          </div>
+        </article>
 
-        </div>
       </div>
     </section>
 
@@ -446,21 +690,21 @@
         <span class="footer-left">Jeman Kalita &middot; 2026 <span class="footer-updated">· Updated November
             2026</span></span>
         <div class="footer-icons">
-          <a href="mailto:jemankalita@gmail.com" class="footer-icon"><svg viewBox="0 0 24 24">
+          <a href="mailto:jemankalita@gmail.com" class="footer-icon" aria-label="Email"><svg viewBox="0 0 24 24">
               <path
                 d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" />
             </svg></a>
-          <a href="https://www.linkedin.com/in/jemankalita/" class="footer-icon" target="_blank" rel="noopener"><svg
+          <a href="https://www.linkedin.com/in/jemankalita/" class="footer-icon" aria-label="LinkedIn" target="_blank" rel="noopener"><svg
               viewBox="0 0 24 24">
               <path
                 d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
             </svg></a>
-          <a href="https://github.com/jemankalita" class="footer-icon" target="_blank" rel="noopener"><svg
+          <a href="https://github.com/jemankalita" class="footer-icon" aria-label="GitHub" target="_blank" rel="noopener"><svg
               viewBox="0 0 24 24">
               <path
                 d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
             </svg></a>
-          <a href="https://x.com/jemxnn" class="footer-icon" target="_blank" rel="noopener"><svg viewBox="0 0 24 24">
+          <a href="https://x.com/jemxnn" class="footer-icon" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24">
               <path
                 d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg></a>
@@ -477,7 +721,7 @@
 
     <div class="page-header">
       <div class="page-header-inner">
-        <h1 class="page-title">Writing</h1>
+        <h2 class="page-title">Writing</h2>
         <p class="page-subtitle">Thinking in public, slowly.</p>
       </div>
     </div>
@@ -511,21 +755,21 @@
         <span class="footer-left">Jeman Kalita &middot; 2026 <span class="footer-updated">· Updated November
             2026</span></span>
         <div class="footer-icons">
-          <a href="mailto:jemankalita@gmail.com" class="footer-icon"><svg viewBox="0 0 24 24">
+          <a href="mailto:jemankalita@gmail.com" class="footer-icon" aria-label="Email"><svg viewBox="0 0 24 24">
               <path
                 d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" />
             </svg></a>
-          <a href="https://www.linkedin.com/in/jemankalita/" class="footer-icon" target="_blank" rel="noopener"><svg
+          <a href="https://www.linkedin.com/in/jemankalita/" class="footer-icon" aria-label="LinkedIn" target="_blank" rel="noopener"><svg
               viewBox="0 0 24 24">
               <path
                 d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
             </svg></a>
-          <a href="https://github.com/jemankalita" class="footer-icon" target="_blank" rel="noopener"><svg
+          <a href="https://github.com/jemankalita" class="footer-icon" aria-label="GitHub" target="_blank" rel="noopener"><svg
               viewBox="0 0 24 24">
               <path
                 d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
             </svg></a>
-          <a href="https://x.com/jemxnn" class="footer-icon" target="_blank" rel="noopener"><svg viewBox="0 0 24 24">
+          <a href="https://x.com/jemxnn" class="footer-icon" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24">
               <path
                 d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg></a>
@@ -542,7 +786,7 @@
 
     <div class="page-header">
       <div class="page-header-inner">
-        <h1 class="page-title">Interests</h1>
+        <h2 class="page-title">Interests</h2>
         <p class="page-subtitle">What pulls my attention.</p>
       </div>
     </div>
@@ -552,86 +796,121 @@
     <section id="interests-portal">
       <div class="portal-centered-container">
         <div class="portal-grid">
-
-          <!-- 01 KNOWLEDGE STASH -->
-          <div class="portal-card" data-portal="knowledge" data-reveal>
-            <div class="card-media">
-              <div class="dynamic-media-container" data-portal-media="knowledge"></div>
-              <div class="media-overlay"></div>
-              <div class="terminal-overlay"></div>
-            </div>
-            <div class="card-content">
-              <h2 class="card-title">Knowledge Stash</h2>
-              <p class="card-kicker">Papers &bull; Courses &bull; Archives</p>
-            </div>
-          </div>
-
-          <!-- 02 INSPIRATION -->
-          <div class="portal-card" data-portal="people" data-page="inspirations" data-reveal>
-            <div class="card-media">
-              <div class="dynamic-media-container" data-portal-media="people"></div>
-              <div class="media-overlay"></div>
-            </div>
-            <div class="card-content">
-              <h2 class="card-title">Inspirations</h2>
-              <p class="card-kicker">Founders &bull; Traders &bull; Polymaths</p>
-            </div>
-          </div>
-
-          <!-- 03 MOVIES -->
-          <div class="portal-card" data-portal="movies" data-reveal>
-            <div class="card-media">
-              <div class="dynamic-media-container" data-portal-media="movies"></div>
-              <div class="media-overlay"></div>
-              <div class="grain-overlay"></div>
-            </div>
-            <div class="card-content">
-              <h2 class="card-title">Movies</h2>
-              <p class="card-kicker">Cinema &bull; Directors &bull; Letters</p>
-            </div>
-          </div>
-
-          <!-- 04 BOOKS -->
-          <div class="portal-card" data-portal="books" data-reveal>
-            <div class="card-media">
-              <div class="dynamic-media-container" data-portal-media="books"></div>
-              <div class="media-overlay"></div>
-            </div>
-            <div class="card-content">
-              <h2 class="card-title">Books</h2>
-              <p class="card-kicker">Library &bull; Thoughts &bull; Reading</p>
-            </div>
-          </div>
-
-          <!-- 05 SPORTS -->
-          <div class="portal-card" data-portal="sports" data-reveal>
-            <div class="card-media">
-              <div class="dynamic-media-container" data-portal-media="sports"></div>
-              <div class="media-overlay"></div>
-              <div class="telemetry-overlay">
-                <svg class="line-svg" viewBox="0 0 100 20">
-                  <path d="M0,10 Q25,0 50,10 T100,10" />
-                </svg>
+          <div class="portal-item" data-reveal>
+            <div class="portal-card" data-portal="knowledge">
+              <div class="card-media">
+                <div class="dynamic-media-container" data-portal-media="knowledge"></div>
+                <div class="media-overlay"></div>
+                <div class="terminal-overlay"></div>
+              </div>
+              <div class="card-content">
+                <h2 class="card-title">Knowledge Stash</h2>
+                <p class="card-kicker">Courses &bull; Papers &bull; Archives</p>
               </div>
             </div>
-            <div class="card-content">
-              <h2 class="card-title">Sports</h2>
-              <p class="card-kicker">F1 &bull; Football &bull; Strategy</p>
-            </div>
+            <ul class="portal-picks">
+                <li><span class="pick-name">CS50x: Introduction to Computer Science</span><span class="pick-meta">Harvard</span></li>
+                <li><span class="pick-name">CS50P: Programming with Python</span><span class="pick-meta">Harvard</span></li>
+                <li><span class="pick-name">Code in Place: Python</span><span class="pick-meta">Stanford</span></li>
+                <li><span class="pick-name">Probability for AI</span><span class="pick-meta">Stanford</span></li>
+            </ul>
           </div>
 
-          <!-- 06 POKER -->
-          <div class="portal-card" data-portal="poker" data-reveal>
-            <div class="card-media">
-              <div class="dynamic-media-container" data-portal-media="poker"></div>
-              <div class="media-overlay"></div>
+          <div class="portal-item" data-reveal>
+            <div class="portal-card" data-portal="people" data-page="inspirations">
+              <div class="card-media">
+                <div class="dynamic-media-container" data-portal-media="people"></div>
+                <div class="media-overlay"></div>
+              </div>
+              <div class="card-content">
+                <h2 class="card-title">Inspirations</h2>
+                <p class="card-kicker">Founders &bull; Traders &bull; Polymaths</p>
+              </div>
             </div>
-            <div class="card-content">
-              <h2 class="card-title">Poker</h2>
-              <p class="card-kicker">EV &bull; Psychology &bull; GTO</p>
-            </div>
+            <ul class="portal-picks">
+                <li><span class="pick-name">Peter Thiel, Elon Musk, Jensen Huang</span><span class="pick-meta">and more</span></li>
+                <li><span class="pick-name"><a href="/interests/inspirations" data-page="inspirations">See everyone I study &rarr;</a></span><span class="pick-meta"></span></li>
+            </ul>
           </div>
 
+          <div class="portal-item" data-reveal>
+            <div class="portal-card" data-portal="movies">
+              <div class="card-media">
+                <div class="dynamic-media-container" data-portal-media="movies"></div>
+                <div class="media-overlay"></div>
+                <div class="grain-overlay"></div>
+              </div>
+              <div class="card-content">
+                <h2 class="card-title">Series</h2>
+                <p class="card-kicker">Thrillers &bull; Drama &bull; Crime</p>
+              </div>
+            </div>
+            <ul class="portal-picks">
+                <li><span class="pick-name">Breaking Bad</span><span class="pick-meta"></span></li>
+                <li><span class="pick-name">Dexter</span><span class="pick-meta"></span></li>
+                <li><span class="pick-name">Suits</span><span class="pick-meta"></span></li>
+                <li><span class="pick-name">You</span><span class="pick-meta"></span></li>
+                <li><span class="pick-name">The Mentalist</span><span class="pick-meta"></span></li>
+            </ul>
+          </div>
+
+          <div class="portal-item" data-reveal>
+            <div class="portal-card" data-portal="books">
+              <div class="card-media">
+                <div class="dynamic-media-container" data-portal-media="books"></div>
+                <div class="media-overlay"></div>
+              </div>
+              <div class="card-content">
+                <h2 class="card-title">Books</h2>
+                <p class="card-kicker">Power &bull; Money &bull; Mindset</p>
+              </div>
+            </div>
+            <ul class="portal-picks">
+                <li><span class="pick-name">The 48 Laws of Power</span><span class="pick-meta"><span class="pick-status pick-status--now"><span class="pulse-dot"></span>Reading</span></span></li>
+                <li><span class="pick-name">Zero to One</span><span class="pick-meta"><span class="pick-status">Up next</span></span></li>
+                <li><span class="pick-name">Think and Grow Rich</span><span class="pick-meta"><span class="pick-status">Read</span></span></li>
+                <li><span class="pick-name">Rich Dad Poor Dad</span><span class="pick-meta"><span class="pick-status">Read</span></span></li>
+            </ul>
+          </div>
+
+          <div class="portal-item" data-reveal>
+            <div class="portal-card" data-portal="sports">
+              <div class="card-media">
+                <div class="dynamic-media-container" data-portal-media="sports"></div>
+                <div class="media-overlay"></div>
+                <div class="telemetry-overlay">
+                  <svg class="line-svg" viewBox="0 0 100 20">
+                    <path d="M0,10 Q25,0 50,10 T100,10" />
+                  </svg>
+                </div>
+              </div>
+              <div class="card-content">
+                <h2 class="card-title">Sports</h2>
+                <p class="card-kicker">F1 &bull; Football</p>
+              </div>
+            </div>
+            <ul class="portal-picks">
+                <li><span class="pick-name">Mercedes-AMG Petronas</span><span class="pick-meta">F1 team</span></li>
+                <li><span class="pick-name">Max Verstappen</span><span class="pick-meta">F1 driver</span></li>
+                <li><span class="pick-name">FC Barcelona</span><span class="pick-meta">Football club</span></li>
+            </ul>
+          </div>
+
+          <div class="portal-item" data-reveal>
+            <div class="portal-card" data-portal="poker">
+              <div class="card-media">
+                <div class="dynamic-media-container" data-portal-media="poker"></div>
+                <div class="media-overlay"></div>
+              </div>
+              <div class="card-content">
+                <h2 class="card-title">Poker</h2>
+                <p class="card-kicker">Texas Hold&rsquo;em &bull; EV &bull; Psychology</p>
+              </div>
+            </div>
+            <ul class="portal-picks">
+                <li><span class="pick-name">Texas Hold&rsquo;em</span><span class="pick-meta">Playing for about a year</span></li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -644,21 +923,21 @@
         <span class="footer-left">Jeman Kalita &middot; 2026 <span class="footer-updated">· Updated November
             2026</span></span>
         <div class="footer-icons">
-          <a href="mailto:jemankalita@gmail.com" class="footer-icon"><svg viewBox="0 0 24 24">
+          <a href="mailto:jemankalita@gmail.com" class="footer-icon" aria-label="Email"><svg viewBox="0 0 24 24">
               <path
                 d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" />
             </svg></a>
-          <a href="https://www.linkedin.com/in/jemankalita/" class="footer-icon" target="_blank" rel="noopener"><svg
+          <a href="https://www.linkedin.com/in/jemankalita/" class="footer-icon" aria-label="LinkedIn" target="_blank" rel="noopener"><svg
               viewBox="0 0 24 24">
               <path
                 d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
             </svg></a>
-          <a href="https://github.com/jemankalita" class="footer-icon" target="_blank" rel="noopener"><svg
+          <a href="https://github.com/jemankalita" class="footer-icon" aria-label="GitHub" target="_blank" rel="noopener"><svg
               viewBox="0 0 24 24">
               <path
                 d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
             </svg></a>
-          <a href="https://x.com/jemxnn" class="footer-icon" target="_blank" rel="noopener"><svg viewBox="0 0 24 24">
+          <a href="https://x.com/jemxnn" class="footer-icon" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24">
               <path
                 d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg></a>
@@ -669,6 +948,31 @@
 
 
   <!-- ═══════════════════════════════════════════
+     NOT FOUND PAGE (unknown or retired routes)
+═══════════════════════════════════════════ -->
+  <div id="page-not-found" class="page">
+    <div class="page-header">
+      <div class="page-header-inner">
+        <h2 class="page-title">404</h2>
+        <p class="page-subtitle">This page doesn&rsquo;t exist, or it has moved.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <section>
+      <div class="section-inner">
+        <span class="section-label">Try instead</span>
+        <div class="section-content not-found-links">
+          <a href="/" data-page="home">Overview</a>
+          <a href="/projects" data-page="projects">Projects</a>
+          <a href="/contact" data-page="contact">Contact</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
      CONTACT PAGE
 ═══════════════════════════════════════════ -->
   <div id="page-inspirations" class="page">
@@ -676,7 +980,7 @@
     <div class="page-header inspirations-header">
       <div class="page-header-inner">
         <a href="/interests" class="blog-back-link" data-page="interests">Interests</a>
-        <h1 class="page-title">Inspirations</h1>
+        <h2 class="page-title">Inspirations</h2>
         <p class="page-subtitle">People whose taste, leverage, and obsession are worth studying.</p>
       </div>
     </div>
@@ -688,11 +992,11 @@
         <span class="section-label">The obvious</span>
         <div class="section-content inspiration-card-grid">
           <a class="inspiration-card obvious" href="/interests/inspirations/peter-thiel" data-person="peter-thiel">
-            <img src="/interests/inspiration/What Peter Thiel Saw in Jeffrey Epstein.jpg" alt="Peter Thiel">
+            <img loading="lazy" src="/interests/inspiration/What Peter Thiel Saw in Jeffrey Epstein.jpg" alt="Peter Thiel">
             <span>Peter Thiel</span>
           </a>
           <a class="inspiration-card obvious" href="/interests/inspirations/elon-musk" data-person="elon-musk">
-            <img src="/interests/inspiration/Elon-Musk.png" alt="Elon Musk">
+            <img loading="lazy" src="/interests/inspiration/Elon-Musk.png" alt="Elon Musk">
             <span>Elon Musk</span>
           </a>
         </div>
@@ -706,27 +1010,27 @@
         <span class="section-label">AI / Builders</span>
         <div class="section-content inspiration-card-grid">
           <a class="inspiration-card" href="/interests/inspirations/andrej-karpathy" data-person="andrej-karpathy">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Andrej_Karpathy_at_Stanford_2019.jpg/640px-Andrej_Karpathy_at_Stanford_2019.jpg" alt="Andrej Karpathy">
+            <img loading="lazy" src="/interests/inspiration/andrej-karpathy.jpg" alt="Andrej Karpathy">
             <span>Andrej Karpathy</span>
           </a>
           <a class="inspiration-card" href="/interests/inspirations/alexandr-wang" data-person="alexandr-wang">
-            <img src="/interests/inspiration/meta-scale-ai-news-inc.png" alt="Alexandr Wang">
+            <img loading="lazy" src="/interests/inspiration/meta-scale-ai-news-inc.png" alt="Alexandr Wang">
             <span>Alexandr Wang</span>
           </a>
           <a class="inspiration-card" href="/interests/inspirations/jensen-huang" data-person="jensen-huang">
-            <img src="/interests/inspiration/Jensen-Huang-copy.png" alt="Jensen Huang">
+            <img loading="lazy" src="/interests/inspiration/Jensen-Huang-copy.png" alt="Jensen Huang">
             <span>Jensen Huang</span>
           </a>
           <a class="inspiration-card" href="/interests/inspirations/sam-altman" data-person="sam-altman">
-            <img src="/interests/inspiration/Sam-Altman.png" alt="Sam Altman">
+            <img loading="lazy" src="/interests/inspiration/Sam-Altman.png" alt="Sam Altman">
             <span>Sam Altman</span>
           </a>
           <a class="inspiration-card" href="/interests/inspirations/dario-amodei" data-person="dario-amodei">
-            <img src="/interests/inspiration/Dario-Amodei-copy.png" alt="Dario Amodei">
+            <img loading="lazy" src="/interests/inspiration/Dario-Amodei-copy.png" alt="Dario Amodei">
             <span>Dario Amodei</span>
           </a>
           <a class="inspiration-card" href="/interests/inspirations/mark-zuckerberg" data-person="mark-zuckerberg">
-            <img src="/interests/inspiration/Mark-Zuckerberg.png" alt="Mark Zuckerberg">
+            <img loading="lazy" src="/interests/inspiration/Mark-Zuckerberg.png" alt="Mark Zuckerberg">
             <span>Mark Zuckerberg</span>
           </a>
         </div>
@@ -740,11 +1044,11 @@
         <span class="section-label">Markets</span>
         <div class="section-content inspiration-card-grid">
           <a class="inspiration-card" href="/interests/inspirations/jim-simons" data-person="jim-simons">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/James_Harris_Simons.jpg/640px-James_Harris_Simons.jpg" alt="Jim Simons">
+            <img loading="lazy" src="/interests/inspiration/jim-simons.jpg" alt="Jim Simons">
             <span>Jim Simons</span>
           </a>
           <a class="inspiration-card" href="/interests/inspirations/ken-griffin" data-person="ken-griffin">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Ken_Griffin_%2852792249920%29_%28cropped%29.jpg/640px-Ken_Griffin_%2852792249920%29_%28cropped%29.jpg" alt="Ken Griffin">
+            <img loading="lazy" src="/interests/inspiration/ken-griffin.jpg" alt="Ken Griffin">
             <span>Ken Griffin</span>
           </a>
         </div>
@@ -756,21 +1060,21 @@
         <span class="footer-left">Jeman Kalita &middot; 2026 <span class="footer-updated">· Updated November
             2026</span></span>
         <div class="footer-icons">
-          <a href="mailto:jemankalita@gmail.com" class="footer-icon"><svg viewBox="0 0 24 24">
+          <a href="mailto:jemankalita@gmail.com" class="footer-icon" aria-label="Email"><svg viewBox="0 0 24 24">
               <path
                 d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" />
             </svg></a>
-          <a href="https://www.linkedin.com/in/jemankalita/" class="footer-icon" target="_blank" rel="noopener"><svg
+          <a href="https://www.linkedin.com/in/jemankalita/" class="footer-icon" aria-label="LinkedIn" target="_blank" rel="noopener"><svg
               viewBox="0 0 24 24">
               <path
                 d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
             </svg></a>
-          <a href="https://github.com/jemankalita" class="footer-icon" target="_blank" rel="noopener"><svg
+          <a href="https://github.com/jemankalita" class="footer-icon" aria-label="GitHub" target="_blank" rel="noopener"><svg
               viewBox="0 0 24 24">
               <path
                 d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
             </svg></a>
-          <a href="https://x.com/jemxnn" class="footer-icon" target="_blank" rel="noopener"><svg viewBox="0 0 24 24">
+          <a href="https://x.com/jemxnn" class="footer-icon" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24">
               <path
                 d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg></a>
@@ -789,7 +1093,7 @@
           <img id="person-photo" class="person-photo" src="" alt="">
           <div>
             <span id="person-kicker" class="person-kicker"></span>
-            <h1 id="person-name" class="page-title">Inspiration</h1>
+            <h2 id="person-name" class="page-title">Inspiration</h2>
             <p id="person-summary" class="page-subtitle"></p>
           </div>
         </div>
@@ -811,21 +1115,21 @@
         <span class="footer-left">Jeman Kalita &middot; 2026 <span class="footer-updated">· Updated November
             2026</span></span>
         <div class="footer-icons">
-          <a href="mailto:jemankalita@gmail.com" class="footer-icon"><svg viewBox="0 0 24 24">
+          <a href="mailto:jemankalita@gmail.com" class="footer-icon" aria-label="Email"><svg viewBox="0 0 24 24">
               <path
-                d="M20 4H4C2.9 4 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" />
+                d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" />
             </svg></a>
-          <a href="https://www.linkedin.com/in/jemankalita/" class="footer-icon" target="_blank" rel="noopener"><svg
+          <a href="https://www.linkedin.com/in/jemankalita/" class="footer-icon" aria-label="LinkedIn" target="_blank" rel="noopener"><svg
               viewBox="0 0 24 24">
               <path
                 d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
             </svg></a>
-          <a href="https://github.com/jemankalita" class="footer-icon" target="_blank" rel="noopener"><svg
+          <a href="https://github.com/jemankalita" class="footer-icon" aria-label="GitHub" target="_blank" rel="noopener"><svg
               viewBox="0 0 24 24">
               <path
                 d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
             </svg></a>
-          <a href="https://x.com/jemxnn" class="footer-icon" target="_blank" rel="noopener"><svg viewBox="0 0 24 24">
+          <a href="https://x.com/jemxnn" class="footer-icon" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24">
               <path
                 d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg></a>
@@ -839,7 +1143,7 @@
 
     <div class="page-header">
       <div class="page-header-inner">
-        <h1 class="page-title">Contact</h1>
+        <h2 class="page-title">Contact</h2>
         <p class="page-subtitle">Always open to interesting conversations.</p>
       </div>
     </div>
@@ -910,21 +1214,21 @@
         <span class="footer-left">Jeman Kalita &middot; 2026 <span class="footer-updated">· Updated November
             2026</span></span>
         <div class="footer-icons">
-          <a href="mailto:jemankalita@gmail.com" class="footer-icon"><svg viewBox="0 0 24 24">
+          <a href="mailto:jemankalita@gmail.com" class="footer-icon" aria-label="Email"><svg viewBox="0 0 24 24">
               <path
                 d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" />
             </svg></a>
-          <a href="https://www.linkedin.com/in/jemankalita/" class="footer-icon" target="_blank" rel="noopener"><svg
+          <a href="https://www.linkedin.com/in/jemankalita/" class="footer-icon" aria-label="LinkedIn" target="_blank" rel="noopener"><svg
               viewBox="0 0 24 24">
               <path
                 d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
             </svg></a>
-          <a href="https://github.com/jemankalita" class="footer-icon" target="_blank" rel="noopener"><svg
+          <a href="https://github.com/jemankalita" class="footer-icon" aria-label="GitHub" target="_blank" rel="noopener"><svg
               viewBox="0 0 24 24">
               <path
                 d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
             </svg></a>
-          <a href="https://x.com/jemxnn" class="footer-icon" target="_blank" rel="noopener"><svg viewBox="0 0 24 24">
+          <a href="https://x.com/jemxnn" class="footer-icon" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24">
               <path
                 d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg></a>
@@ -940,7 +1244,7 @@
     <article class="blog-article">
       <header class="blog-article-header">
         <a href="/blogs" class="blog-back-link" data-page="blogs">Writing</a>
-        <h1 class="page-title">One Tweet Changed Everything</h1>
+        <h2 class="page-title">One Tweet Changed Everything</h2>
         <div class="blog-article-meta">
           <span>Jeman Kalita</span>
           <span>June 2026</span>
@@ -1034,21 +1338,21 @@
         <span class="footer-left">Jeman Kalita &middot; 2026 <span class="footer-updated">· Updated November
             2026</span></span>
         <div class="footer-icons">
-          <a href="mailto:jemankalita@gmail.com" class="footer-icon"><svg viewBox="0 0 24 24">
+          <a href="mailto:jemankalita@gmail.com" class="footer-icon" aria-label="Email"><svg viewBox="0 0 24 24">
               <path
                 d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" />
             </svg></a>
-          <a href="https://www.linkedin.com/in/jemankalita/" class="footer-icon" target="_blank" rel="noopener"><svg
+          <a href="https://www.linkedin.com/in/jemankalita/" class="footer-icon" aria-label="LinkedIn" target="_blank" rel="noopener"><svg
               viewBox="0 0 24 24">
               <path
                 d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
             </svg></a>
-          <a href="https://github.com/jemankalita" class="footer-icon" target="_blank" rel="noopener"><svg
+          <a href="https://github.com/jemankalita" class="footer-icon" aria-label="GitHub" target="_blank" rel="noopener"><svg
               viewBox="0 0 24 24">
               <path
                 d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
             </svg></a>
-          <a href="https://x.com/jemxnn" class="footer-icon" target="_blank" rel="noopener"><svg viewBox="0 0 24 24">
+          <a href="https://x.com/jemxnn" class="footer-icon" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24">
               <path
                 d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg></a>
@@ -1064,6 +1368,16 @@
   </button>
 
   <script src="/script.js" defer></script>
+  <!-- Vercel Web Analytics: only loads on the deployed site, never on localhost. -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    if (!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {
+      var vaScript = document.createElement('script');
+      vaScript.defer = true;
+      vaScript.src = '/_vercel/insights/script.js';
+      document.head.appendChild(vaScript);
+    }
+  </script>
 </body>
 
 </html>

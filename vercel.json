@@ -1,8 +1,23 @@
 {
+  "buildCommand": "node scripts/build-pages.mjs",
+  "outputDirectory": ".",
+  "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/"
+      "source": "/projects",
+      "destination": "/routes/projects.html"
+    },
+    {
+      "source": "/blogs",
+      "destination": "/routes/blogs.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/routes/contact.html"
+    },
+    {
+      "source": "/blog/one-tweet-changed-everything",
+      "destination": "/routes/blog/one-tweet-changed-everything.html"
     }
   ]
 }
