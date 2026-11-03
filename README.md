@@ -36,7 +36,7 @@ Open `index.html` directly in any browser. No build step is needed.
 Or serve it locally:
 
 ```bash
-python -m http.server 8000
+python dev-server.py
 ```
 
 Then visit `http://localhost:8000`.

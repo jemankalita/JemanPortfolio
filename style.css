@@ -5192,3 +5192,171 @@ header#overview .hero-portrait {
   }
 }
 
+
+/* ─── Review fixes (Nov 2026) ─────────────────────────── */
+
+/* Entries separate by space, not hairlines */
+.exp-entry + .exp-entry {
+  border-top: none;
+  padding-top: 0;
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+#education .exp-entry .edu-capsules {
+  margin-top: 1rem;
+}
+
+/* Thin seals (VIT, IITM) read better with less tile padding */
+.school-logo--seal {
+  padding: 2px;
+  background: #fff;
+}
+
+.exp-header .school-logo {
+  flex-shrink: 0;
+}
+
+/* Readable minimums for metadata */
+.edu-detail { font-size: 0.8125rem; }
+.section-label { font-size: 0.75rem; }
+.status-label { font-size: 0.6875rem; }
+.edu-capsule,
+.capsule-bold { font-size: 0.6875rem; }
+.footer-updated { font-size: 0.6875rem; }
+
+/* Interest cards: square-ish corners to match the rest of the site */
+.portal-card {
+  border-radius: 6px;
+}
+
+/* ─── Projects page ───────────────────────────────────── */
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 6vw, 4.5rem);
+}
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  align-items: start;
+}
+
+.project-media {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #0d0d0d;
+}
+
+.project-media img,
+.project-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.project-media:hover img,
+.project-media:hover video {
+  transform: scale(1.03);
+}
+
+.project-media-hint {
+  position: absolute;
+  left: 0.75rem;
+  bottom: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.project-media.is-playing .project-media-hint {
+  opacity: 0;
+}
+
+.project-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.project-title {
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.project-stat {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #15803d;
+}
+
+.project-desc {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0 0 0.75rem;
+  max-width: 60ch;
+}
+
+.project-tech {
+  font-size: 0.8125rem;
+  color: var(--text-muted, #666);
+  margin: 0 0 1rem;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.project-links a {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 2px;
+}
+
+.project-links a:hover,
+.project-links a:focus-visible {
+  opacity: 0.6;
+}
+
+@media (max-width: 760px) {
+  .project {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-media img,
+  .project-media video {
+    transition: none;
+  }
+  .project-media:hover img,
+  .project-media:hover video {
+    transform: none;
+  }
+}
