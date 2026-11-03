@@ -1,0 +1,3 @@
+# Cloudflare Pages (jemankalita.pages.dev) only: forward every path to the main site.
+# Vercel ignores this file; jeman.vercel.app is the canonical host.
+/* https://jeman.vercel.app/:splat 301
