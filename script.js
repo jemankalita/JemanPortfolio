@@ -88,6 +88,16 @@ function syncNavSlider() {
 }
 window.addEventListener('resize', syncNavSlider);
 
+// Link widths change after web fonts load and while the active style transitions,
+// so re-measure whenever any nav link resizes.
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(syncNavSlider);
+}
+if ('ResizeObserver' in window) {
+  const navResizeObserver = new ResizeObserver(syncNavSlider);
+  document.querySelectorAll('.nav-links, .nav-links a').forEach(el => navResizeObserver.observe(el));
+}
+
 // ─── Split text for word-by-word reveal ─────
 function splitTextForReveal(selector, baseDelay = 0.1) {
   document.querySelectorAll(selector).forEach(el => {
@@ -561,3 +571,41 @@ initDynamicMedia();
 
 
 
+
+// ─── Project preview videos ─────────────────
+// Desktop: play on hover. Touch screens: play while in view. Reduced motion: never autoplay.
+(function initProjectVideos() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canHover = window.matchMedia('(hover: hover)').matches;
+  const medias = document.querySelectorAll('.project-media');
+
+  const play = (media, video) => {
+    const attempt = video.play();
+    if (attempt && attempt.catch) {
+      attempt.then(() => media.classList.add('is-playing')).catch(() => media.classList.remove('is-playing'));
+    }
+  };
+  const pause = (media, video) => {
+    video.pause();
+    media.classList.remove('is-playing');
+  };
+
+  medias.forEach(media => {
+    const video = media.querySelector('video');
+    if (!video || reduceMotion) return;
+
+    if (canHover) {
+      media.addEventListener('mouseenter', () => play(media, video));
+      media.addEventListener('mouseleave', () => pause(media, video));
+      media.addEventListener('focus', () => play(media, video));
+      media.addEventListener('blur', () => pause(media, video));
+      return;
+    }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        entries.forEach(entry => (entry.isIntersecting ? play(media, video) : pause(media, video)));
+      }, { threshold: 0.6 }).observe(media);
+    }
+  });
+})();
