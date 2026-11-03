@@ -48,7 +48,7 @@ const revealObserver = new IntersectionObserver((entries) => {
     if (entry.isIntersecting) {
       entry.target.classList.add('is-visible');
       // Stagger children inside the section if any
-      const childrenToStagger = entry.target.querySelectorAll('.achieve-block, .sport-block, .fun-project-list li, .work-card, .contact-row');
+      const childrenToStagger = entry.target.querySelectorAll('.achieve-block, .sport-block, .fun-project-list li, .work-card, .contact-row, .exp-entry, .project-card, .achv-card, .cred-row, .blog-card');
       childrenToStagger.forEach((child, idx) => {
         child.style.opacity = '0';
         child.style.transform = 'translateY(15px)';
@@ -154,7 +154,7 @@ const PERSON_PROFILES = {
   'andrej-karpathy': {
     name: 'Andrej Karpathy',
     kicker: 'AI',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Andrej_Karpathy_at_Stanford_2019.jpg/640px-Andrej_Karpathy_at_Stanford_2019.jpg',
+    image: '/interests/inspiration/andrej-karpathy.jpg',
     summary: 'Clear AI education, deep learning taste, and rare engineer-teacher energy.',
     notes: ['Explains complex systems without fake simplicity.', 'Good model for learning in public and building intuition.', 'Relevant to AI, ML systems, and technical communication.']
   },
@@ -196,21 +196,21 @@ const PERSON_PROFILES = {
   'jim-simons': {
     name: 'Jim Simons',
     kicker: 'Markets',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/James_Harris_Simons.jpg/640px-James_Harris_Simons.jpg',
+    image: '/interests/inspiration/jim-simons.jpg',
     summary: 'Quantitative markets, secrecy, compounding, and math as an edge.',
     notes: ['Turned math and data into one of the greatest investing machines.', 'Useful for studying systematic trading and research culture.', 'Strong reminder that edge comes from depth, not noise.']
   },
   'ken-griffin': {
     name: 'Ken Griffin',
     kicker: 'Markets',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Ken_Griffin_%2852792249920%29_%28cropped%29.jpg/640px-Ken_Griffin_%2852792249920%29_%28cropped%29.jpg',
+    image: '/interests/inspiration/ken-griffin.jpg',
     summary: 'Risk, market structure, operational intensity, and institutional scale.',
     notes: ['Built at the intersection of trading, systems, and talent density.', 'Useful for thinking about scale in finance.', 'Good model for intensity and operational discipline.']
   }
 };
 
 const DEFAULT_META = {
-  title: 'Jeman Kalita — Architecting Systems, Quant & AI',
+  title: 'Jeman Kalita',
   description: 'The personal digital archive of Jeman Kalita. Building at the intersection of quantitative finance, artificial intelligence, and high-performance software systems.',
   url: SITE_BASE_URL + '/',
   type: 'website',
@@ -222,15 +222,40 @@ function setMeta(selector, attr, value) {
   if (el) el.setAttribute(attr, value);
 }
 
+const PAGE_META = {
+  projects: {
+    title: 'Projects | Jeman Kalita',
+    description: 'Things Jeman Kalita has built: VIT Map, C0RTEX, a UNSW Battlecode bot and Opurnos.'
+  },
+  blogs: {
+    title: 'Writing | Jeman Kalita',
+    description: 'Essays by Jeman Kalita on building, startups and the luck that comes from sharing your work.'
+  },
+  contact: {
+    title: 'Contact | Jeman Kalita',
+    description: 'Get in touch with Jeman Kalita by email, GitHub, LinkedIn or X, or book a meeting.'
+  },
+  'not-found': {
+    title: 'Page not found | Jeman Kalita',
+    description: DEFAULT_META.description
+  }
+};
+
 function updateMetadata(pageId) {
   const post = Object.values(BLOG_POSTS).find(item => item.pageId === pageId);
-  const meta = post ? {
-    title: `${post.title} | Jeman Kalita`,
-    description: post.excerpt,
-    url: SITE_BASE_URL + post.slug,
-    type: 'article',
-    image: DEFAULT_META.image
-  } : DEFAULT_META;
+  const page = PAGE_META[pageId];
+  let meta = DEFAULT_META;
+  if (post) {
+    meta = {
+      title: `${post.title} | Jeman Kalita`,
+      description: post.excerpt,
+      url: SITE_BASE_URL + post.slug,
+      type: 'article',
+      image: DEFAULT_META.image
+    };
+  } else if (page) {
+    meta = { ...DEFAULT_META, ...page, url: SITE_BASE_URL + (pageId === 'not-found' ? '/' : '/' + pageId) };
+  }
 
   document.title = meta.title;
   setMeta('meta[name="title"]', 'content', meta.title);
@@ -247,22 +272,22 @@ function updateMetadata(pageId) {
   setMeta('meta[property="twitter:image"]', 'content', meta.image);
 }
 
+// Pages that exist in the markup but are parked (not reachable) for now.
+const PARKED_PAGES = ['interests', 'inspirations'];
+const ROUTABLE_PAGES = ['projects', 'blogs', 'contact'];
+
 function getRouteTarget() {
   const path = location.pathname.replace(/\/$/, '');
   const blogPath = path.match(/^\/blog\/([^/]+)$/);
   if (blogPath && BLOG_POSTS[blogPath[1]]) return BLOG_POSTS[blogPath[1]].pageId;
 
   const pathPage = path.replace(/^\//, '');
-  const personPath = pathPage.match(/^interests\/inspirations\/([^/]+)$/);
-  if (personPath && PERSON_PROFILES[personPath[1]]) return 'inspiration-person:' + personPath[1];
-
-  if (pathPage === 'interests/inspirations') return 'inspirations';
-
-  const validPages = ['projects', 'blogs', 'interests', 'inspirations', 'contact'];
-  if (validPages.includes(pathPage)) return pathPage;
-
-  const rawHash = location.hash.replace(/^#(page-)?/, '') || 'home';
-  return ['home', ...validPages].includes(rawHash) ? rawHash : 'home';
+  if (pathPage === '') {
+    const hashPage = location.hash.replace(/^#(page-)?/, '');
+    return ROUTABLE_PAGES.includes(hashPage) ? hashPage : 'home';
+  }
+  if (ROUTABLE_PAGES.includes(pathPage)) return pathPage;
+  return 'not-found';
 }
 
 function routeForPage(pageId) {
@@ -270,6 +295,7 @@ function routeForPage(pageId) {
   if (post) return post.slug;
   if (pageId.startsWith('inspiration-person:')) return '/interests/inspirations/' + pageId.split(':')[1];
   if (pageId === 'inspirations') return '/interests/inspirations';
+  if (pageId === 'not-found') return location.pathname;
   return pageId === 'home' ? '/' : '/' + pageId;
 }
 
@@ -295,7 +321,23 @@ function renderPersonProfile(slug) {
   }
 }
 
+// Only the visible page's title is an <h1>; the hidden pages' titles are <h2>, so the
+// document always has exactly one main heading. scripts/build-pages.mjs does the same
+// in the generated HTML for crawlers that don't run JavaScript.
+function syncPageHeadings(activePage) {
+  document.querySelectorAll('.page').forEach(page => {
+    const heading = page.querySelector('.hero-name, .page-title');
+    const wanted = page === activePage ? 'H1' : 'H2';
+    if (!heading || heading.tagName === wanted) return;
+    const replacement = document.createElement(wanted);
+    [...heading.attributes].forEach(attr => replacement.setAttribute(attr.name, attr.value));
+    replacement.append(...heading.childNodes);
+    heading.replaceWith(replacement);
+  });
+}
+
 function showPage(pageId, shouldPush = true) {
+  if (PARKED_PAGES.includes(pageId) || pageId.startsWith('inspiration-person:')) pageId = 'not-found';
   const personSlug = pageId.startsWith('inspiration-person:') ? pageId.split(':')[1] : null;
   const domPageId = personSlug ? 'inspiration-person' : pageId;
   const allPages = document.querySelectorAll('.page');
@@ -310,6 +352,7 @@ function showPage(pageId, shouldPush = true) {
   if (!target) return;
 
   if (personSlug) renderPersonProfile(personSlug);
+  syncPageHeadings(target);
 
   // Force animation restart by briefly removing and re-adding active
   target.style.display = 'block';
@@ -501,6 +544,8 @@ const DYNAMIC_MEDIA = {
 function initDynamicMedia() {
   const containers = document.querySelectorAll('.dynamic-media-container');
   containers.forEach(container => {
+    // Interests is parked: don't download its media until the page is back.
+    if (container.closest('#page-interests')) return;
     const section = container.dataset.portalMedia;
     const files = DYNAMIC_MEDIA[section];
     if (!files || files.length === 0) return;
@@ -607,5 +652,154 @@ initDynamicMedia();
         entries.forEach(entry => (entry.isIntersecting ? play(media, video) : pause(media, video)));
       }, { threshold: 0.6 }).observe(media);
     }
+  });
+})();
+
+// ─── Theme toggle ───────────────────────────
+// The initial theme is set inline in <head>; this keeps the button, storage and system preference in sync.
+(function initThemeToggle() {
+  const root = document.documentElement;
+  const button = document.getElementById('theme-toggle');
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+  const readSaved = () => {
+    try { return localStorage.getItem('theme'); } catch (e) { return null; }
+  };
+  const save = theme => {
+    try { localStorage.setItem('theme', theme); } catch (e) { /* storage unavailable: theme lasts this visit */ }
+  };
+  const apply = theme => {
+    root.setAttribute('data-theme', theme);
+    if (button) button.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  };
+
+  apply(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  // Blur crossfade of the whole page via the View Transitions API (keyframes live in style.css).
+  const switchTheme = next => {
+    if (reduceMotion.matches) {
+      apply(next);
+      return;
+    }
+    if (!document.startViewTransition) {
+      root.classList.add('theme-fading');
+      apply(next);
+      window.setTimeout(() => root.classList.remove('theme-fading'), 450);
+      return;
+    }
+
+    root.classList.add('theme-transitioning');
+    const transition = document.startViewTransition(() => apply(next));
+    const clear = () => root.classList.remove('theme-transitioning');
+    transition.finished
+      .catch(() => { /* transition skipped: theme is already applied */ })
+      .finally(clear);
+    window.setTimeout(clear, 1200); // backstop so hover transitions never stay disabled
+  };
+
+  if (button) {
+    button.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      button.classList.remove('is-spinning');
+      void button.offsetWidth; // restart the press animation
+      button.classList.add('is-spinning');
+      switchTheme(next);
+      save(next);
+    });
+    button.addEventListener('animationend', () => button.classList.remove('is-spinning'));
+  }
+
+  systemDark.addEventListener('change', event => {
+    if (!readSaved()) apply(event.matches ? 'dark' : 'light');
+  });
+})();
+
+// Skills: category tabs. They rotate on their own until the visitor touches them.
+(function initSkillTabs() {
+  const root = document.querySelector('.skills');
+  const tablist = root && root.querySelector('.skill-tabs');
+  if (!tablist) return;
+  const tabs = Array.from(tablist.querySelectorAll('.skill-tab'));
+  const INTERVAL_MS = 2600;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let current = Math.max(0, tabs.findIndex(t => t.getAttribute('aria-selected') === 'true'));
+  let timer = null;
+  let isStopped = reduceMotion.matches;
+  let isOnScreen = false;
+
+  root.style.setProperty('--skill-interval', INTERVAL_MS + 'ms');
+
+  const indicator = tablist.querySelector('.skill-tab-indicator');
+  const moveIndicator = () => {
+    const tab = tabs[current];
+    if (!indicator || !tab) return;
+    indicator.style.width = tab.offsetWidth + 'px';
+    indicator.style.height = tab.offsetHeight + 'px';
+    indicator.style.transform = `translate(${tab.offsetLeft}px, ${tab.offsetTop}px)`;
+    indicator.classList.add('is-ready');
+  };
+
+  const select = (index, focus) => {
+    current = index;
+    tabs.forEach((tab, i) => {
+      const isActive = i === index;
+      tab.setAttribute('aria-selected', String(isActive));
+      tab.tabIndex = isActive ? 0 : -1;
+      const panel = document.getElementById(tab.getAttribute('aria-controls'));
+      if (panel) panel.hidden = !isActive;
+    });
+    if (focus) tabs[index].focus();
+    moveIndicator();
+  };
+
+  if ('ResizeObserver' in window) new ResizeObserver(moveIndicator).observe(tablist);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(moveIndicator);
+  moveIndicator();
+
+  const pause = () => {
+    window.clearInterval(timer);
+    timer = null;
+    root.classList.remove('is-auto');
+  };
+
+  const start = () => {
+    if (isStopped || !isOnScreen || isHovered || timer) return;
+    root.classList.add('is-auto');
+    select(current, false); // restart the progress line
+    timer = window.setInterval(() => select((current + 1) % tabs.length, false), INTERVAL_MS);
+  };
+
+  // Any real interaction hands control to the visitor for good.
+  const stop = () => {
+    isStopped = true;
+    pause();
+  };
+  ['pointerdown', 'touchstart', 'keydown'].forEach(type =>
+    root.addEventListener(type, stop, { passive: true })
+  );
+  // Hover only pauses, so a cursor resting where the section scrolls in does not end the rotation.
+  let isHovered = false;
+  root.addEventListener('mouseenter', () => { isHovered = true; pause(); });
+  root.addEventListener('mouseleave', () => { isHovered = false; start(); });
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(entries => {
+      isOnScreen = entries[0].isIntersecting;
+      if (isOnScreen) start(); else pause();
+    }, { threshold: 0.35 }).observe(root);
+  }
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => select(index, false));
+    tab.addEventListener('keydown', event => {
+      const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[event.key];
+      if (event.key === 'Home') { event.preventDefault(); select(0, true); return; }
+      if (event.key === 'End') { event.preventDefault(); select(tabs.length - 1, true); return; }
+      if (!step) return;
+      event.preventDefault();
+      select((index + step + tabs.length) % tabs.length, true);
+    });
   });
 })();
